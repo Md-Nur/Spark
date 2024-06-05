@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
@@ -21,7 +22,9 @@ const Hero = () => {
               <br /> To illuminate the world, let the spark of creativity lead
               the way.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <Link href="/results" className="btn btn-primary">
+              See Result
+            </Link>
           </div>
         </div>
       </div>
