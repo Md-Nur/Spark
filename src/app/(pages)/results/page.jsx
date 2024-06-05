@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Loading from "@/components/Loading";
 
 const Results = () => {
   const [results, setResult] = useState([]);
@@ -17,7 +18,25 @@ const Results = () => {
     value: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
+    axios
+      .get("/api/student-info")
+      .then((response) => {
+        setResult(response.data);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
     axios
       .get(`/api/student-info?sort=${sort.name}&value=${sort.value}`)
       .then((response) => {
@@ -25,10 +44,14 @@ const Results = () => {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [sort]);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`/api/student-info?filter=${filter.name}&value=${filter.value}`)
       .then((response) => {
@@ -37,6 +60,9 @@ const Results = () => {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [filter]);
 
@@ -95,24 +121,28 @@ const Results = () => {
             </tr>
           </thead>
           <tbody>
-            {results.map((result) => (
-              <tr key={result.id} className="hover">
-                <td>
-                  <Link href={`/results/${result._id}`}>{result.name}</Link>
-                </td>
-                <td>{result.roll}</td>
-                <td className="hidden md:table-cell">{result.session}</td>
-                <td>{result.credit}</td>
-                <td>{parseFloat(result.ygpa).toFixed(3)}</td>
-                <td
-                  className={`hidden sm:table-cell ${
-                    result.pass ? "text-green-500" : "text-red-500"
-                  }`}
-                >
-                  {result.pass ? "Pass" : "Fail"}
-                </td>
-              </tr>
-            ))}
+            {!loading ? (
+              results.map((result) => (
+                <tr key={result.id} className="hover">
+                  <Link href={`/results/${result._id}`}>
+                    <td>{result.name}</td>
+                  </Link>
+                  <td>{result.roll}</td>
+                  <td className="hidden md:table-cell">{result.session}</td>
+                  <td>{result.credit}</td>
+                  <td>{parseFloat(result.ygpa).toFixed(3)}</td>
+                  <td
+                    className={`hidden sm:table-cell ${
+                      result.pass ? "text-green-500" : "text-red-500"
+                    }`}
+                  >
+                    {result.pass ? "Pass" : "Fail"}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <Loading />
+            )}
           </tbody>
         </table>
       </div>

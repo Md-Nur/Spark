@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Loading from "@/components/Loading";
 
 const SingleResult = ({ params }) => {
   const [result, setResult] = useState(null);
@@ -16,8 +17,7 @@ const SingleResult = ({ params }) => {
       .catch((err) => toast.error(err.message));
   }, []);
 
-  if (!result) return <div>Loading...</div>;
-  console.log(result);
+  if (!result) return <Loading />;
   return (
     <div className="hero min-h-screen bg-base-200 w-full">
       <div className="hero-content flex-col lg:flex-row justify-around w-full">
@@ -77,7 +77,9 @@ const SingleResult = ({ params }) => {
           </div>
           {result?.pass && (
             <>
-              <h3 className="text-lg font-bold my-2 uppercase">Improvements:</h3>
+              <h3 className="text-lg font-bold my-2 uppercase">
+                Improvements:
+              </h3>
               <ul>
                 {result?.subjects
                   .filter((sub) => sub.improvement)
