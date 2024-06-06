@@ -12,7 +12,7 @@ export interface SubjectSemister extends Document {
   }[];
 }
 
-const SubjectSemisterSchema = new Schema<SubjectSemister>({
+const SubjectSemisterSchema = new Schema({
   year: { type: Number, enum: { values: [1, 2, 3, 4] } },
   semister: { type: String, enum: { values: ["Even", "Odd"] } },
   isNew: { type: Boolean, required: true },
