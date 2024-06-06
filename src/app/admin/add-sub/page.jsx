@@ -10,6 +10,7 @@ const AddSub = () => {
   const [subject, setSubject] = useState({
     year: 0,
     semister: "",
+    isNew: true,
     subjects: [
       {
         name: "",
@@ -73,6 +74,22 @@ const AddSub = () => {
         <div className="form-control">
           <select
             className="select select-bordered"
+            defaultValue="Curriculum"
+            onChange={(e) => {
+              setSubject({
+                ...subject,
+                isNew: e.target.value,
+              });
+            }}
+          >
+            <option disabled>Curriculum</option>
+            <option value={true}>New</option>
+            <option value={false}>Old</option>
+          </select>
+        </div>
+        <div className="form-control">
+          <select
+            className="select select-bordered"
             defaultValue="Year"
             onChange={(e) => {
               setSubject({
@@ -99,7 +116,7 @@ const AddSub = () => {
               });
             }}
           >
-            <option disabled>Semister</option>
+            <option disabled>Semester</option>
             <option value="Odd">Odd</option>
             <option value="Even">Even</option>
           </select>

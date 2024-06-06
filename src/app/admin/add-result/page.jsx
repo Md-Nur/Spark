@@ -11,6 +11,7 @@ const AddResult = () => {
   const [queries, setQueries] = useState({
     year: 1,
     semester: "Odd",
+    session: "22-23",
   });
 
   useEffect(() => {
@@ -20,15 +21,16 @@ const AddResult = () => {
   useEffect(() => {
     axios
       .get(
-        `/api/subject-semister?year=${queries.year}&semester=${queries.semester}`
+        `/api/subject-semister?year=${queries.year}&semester=${queries.semester}&session=${queries.session}`
       )
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setResult({
           ...result,
           year: queries.year,
           semester: queries.semester,
           subjects: res.data.data.subjects,
+          session: queries.session,
         });
       })
       .catch((e) => {
@@ -55,7 +57,7 @@ const AddResult = () => {
         toast.success(
           `Result added successfully; Credit: 
           ${res.data.credit}, YGPA:
-          ${res.data.ygpa}`
+          ${parseFloat(res.data.ygpa).toFixed(3)}`
         );
       })
       .then(() => {
@@ -72,7 +74,7 @@ const AddResult = () => {
       <Modal queries={queries} setQueries={setQueries} />
       <HeroForm
         title="Add result"
-        description="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+        description={`Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi. year: ${queries.year}. Semester: ${queries.semester}. Session: ${queries.session}`}
       >
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">
@@ -118,23 +120,7 @@ const AddResult = () => {
               autoComplete="off"
             />
           </div>
-          <div className="form-control">
-            <select
-              className="select select-bordered"
-              onChange={(e) => {
-                setResult({
-                  ...result,
-                  session: e.target.value,
-                });
-              }}
-              defaultValue="Session"
-            >
-              <option disabled>Session</option>
-              <option value="22-23">22-23</option>
-              <option value="21-22">21-22</option>
-              <option value="20-21">20-21</option>
-            </select>
-          </div>
+
           {result?.subjects &&
             result?.subjects.map((sub, i) => (
               <SingleSub result={result} setResult={setResult} i={i} key={i} />

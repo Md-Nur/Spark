@@ -3,6 +3,7 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface SubjectSemister extends Document {
   year: number;
   semister: string;
+  isNew: boolean;
   subjects: {
     name: string;
     code: string;
@@ -14,6 +15,7 @@ export interface SubjectSemister extends Document {
 const SubjectSemisterSchema = new Schema<SubjectSemister>({
   year: { type: Number, enum: { values: [1, 2, 3, 4] } },
   semister: { type: String, enum: { values: ["Even", "Odd"] } },
+  isNew: { type: Boolean, required: true },
   subjects: [
     {
       name: { type: String, required: true },

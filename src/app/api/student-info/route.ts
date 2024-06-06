@@ -18,7 +18,10 @@ export async function POST(request: Request) {
     type: sub.type,
     sgpa: gradeToSgpa(sub.grade),
     pass: sub.grade !== "F",
-    improvement: gradeToSgpa(sub.grade) < 2.75 && sub.type === "Theory",
+    improvement:
+      gradeToSgpa(sub.grade) < 2.75 &&
+      sub.type === "Theory" &&
+      sub.grade !== "F",
   }));
 
   const data = {
@@ -49,23 +52,28 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const sort = url.searchParams.get("sort");
   const filter = url.searchParams.get("filter");
-  let value: any = url.searchParams.get("value");
+  let fvalue: any = url.searchParams.get("fvalue");
+  let svalue: any = url.searchParams.get("svalue");
 
-  if (value === "1" || value === "-1") {
-    value = parseInt(value);
-  } else if (value === "true" || value === "false") {
-    value = value === "true";
+  if (svalue === "1" || svalue === "-1") {
+    svalue = parseInt(svalue);
+  }
+  if (fvalue === "true" || fvalue === "false") {
+    fvalue = fvalue === "true";
   }
 
+  let sortObj: any = {};
   // Create a sort object
+  let filterObj: any = {};
   if (sort) {
-    let sortObj: any = {};
-    sortObj[sort] = value;
-    students = await StudentModel.find({}).sort(sortObj);
-  } else if (filter) {
-    let filterObj: any = {};
-    filterObj[filter] = value;
-    students = await StudentModel.find(filterObj);
+    sortObj[sort] = svalue;
+  }
+  if (filter) {
+    filterObj[filter] = fvalue;
+  }
+
+  if (sort || filter) {
+    students = await StudentModel.find(filterObj).sort(sortObj);
   } else {
     students = await StudentModel.find({});
   }

@@ -9,13 +9,13 @@ import Loading from "@/components/Loading";
 const Results = () => {
   const [results, setResult] = useState([]);
   const [sort, setSort] = useState({
-    name: "roll",
+    name: "",
     value: 1,
   });
 
   const [filter, setFilter] = useState({
-    name: null,
-    value: "",
+    name: "",
+    value: true,
   });
 
   const [loading, setLoading] = useState(false);
@@ -23,37 +23,9 @@ const Results = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("/api/student-info")
-      .then((response) => {
-        setResult(response.data);
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`/api/student-info?sort=${sort.name}&value=${sort.value}`)
-      .then((response) => {
-        setResult(response.data);
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [sort]);
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`/api/student-info?filter=${filter.name}&value=${filter.value}`)
+      .get(
+        `/api/student-info?filter=${filter.name}&fvalue=${filter.value}&sort=${sort.name}&svalue=${sort.value}`
+      )
       .then((response) => {
         setResult(response.data);
         // console.log(response.data);
@@ -64,7 +36,7 @@ const Results = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [filter]);
+  }, [filter, sort]);
 
   return (
     <section className="flex flex-col items-center justify-evenly min-h-screen p-2">
@@ -127,7 +99,9 @@ const Results = () => {
                   <Link href={`/results/${result._id}`}>
                     <td>{result.name}</td>
                   </Link>
-                  <td>{result.roll}</td>
+                  <td>
+                    <Link href={`/results/${result._id}`}>{result.roll}</Link>
+                  </td>
                   <td className="hidden md:table-cell">{result.session}</td>
                   <td>{result.credit}</td>
                   <td>{parseFloat(result.ygpa).toFixed(3)}</td>

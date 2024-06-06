@@ -1,8 +1,10 @@
 const SingleSub = ({ result, setResult, i }) => {
   return (
     <div className="form-control gap-1">
-      <div className="flex gap-2 flex-wrap w-full">
-        <label className="label">{result.subjects[i].name}</label>
+      <div className="flex gap-2 flex-wrap w-auto justify-between px-2">
+        <label className="label">
+          {result.subjects[i].name} ({result.subjects[i].credit})
+        </label>
         <select
           defaultValue="Grade"
           className="select select-bordered"

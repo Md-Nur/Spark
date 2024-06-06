@@ -1,4 +1,3 @@
-
 const Modal = ({ queries, setQueries }) => {
   return (
     <dialog id="my_modal_add_result" className="modal">
@@ -37,6 +36,24 @@ const Modal = ({ queries, setQueries }) => {
             <option disabled>Semester</option>
             <option value="Odd">Odd</option>
             <option value="Even">Even</option>
+          </select>
+        </div>
+
+        <div className="form-control">
+          <select
+            className="select select-bordered"
+            onChange={(e) => {
+              setQueries({
+                ...queries,
+                session: e.target.value,
+              });
+            }}
+            defaultValue="Session"
+          >
+            <option disabled>Session</option>
+            <option value="22-23">22-23</option>
+            <option value="21-22">21-22</option>
+            <option value="20-21">20-21</option>
           </select>
         </div>
 

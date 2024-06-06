@@ -7,10 +7,12 @@ export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const year = url.searchParams.get("year");
   const semester = url.searchParams.get("semester");
+  const session = url.searchParams.get("session");
   try {
     const data = await SubjectSemisterModel.findOne({
       year: year,
       semister: semester,
+      isNew: session === "22-23",
     });
     return Response.json({ data });
   } catch (error) {
@@ -25,6 +27,7 @@ export async function POST(request: Request) {
   const data = {
     year: Number(body.year),
     semister: body.semister,
+    isNew: body.isNew === "true",
     subjects: body.subjects.map((subject: any) => ({
       name: subject.name,
       code: subject.code,
