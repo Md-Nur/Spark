@@ -52,6 +52,7 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const sort = url.searchParams.get("sort");
   const filter = url.searchParams.get("filter");
+  const search = url.searchParams.get("search");
   let fvalue: any = url.searchParams.get("fvalue");
   let svalue: any = url.searchParams.get("svalue");
 
@@ -72,7 +73,11 @@ export async function GET(request: Request) {
     filterObj[filter] = fvalue;
   }
 
-  if (sort || filter) {
+  if (search) {
+    students = await StudentModel.find({
+      name: { $regex: search, $options: "i" },
+    });
+  } else if (sort || filter) {
     students = await StudentModel.find(filterObj).sort(sortObj);
   } else {
     students = await StudentModel.find({});

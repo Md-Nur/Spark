@@ -8,10 +8,12 @@ import Loading from "@/components/Loading";
 
 const Results = () => {
   const [results, setResult] = useState([]);
+  let allResult = [];
   const [sort, setSort] = useState({
     name: "",
     value: 1,
   });
+  const [searchName, setSearchName] = useState("");
 
   const [filter, setFilter] = useState({
     name: "",
@@ -24,10 +26,11 @@ const Results = () => {
     setLoading(true);
     axios
       .get(
-        `/api/student-info?filter=${filter.name}&fvalue=${filter.value}&sort=${sort.name}&svalue=${sort.value}`
+        `/api/student-info?filter=${filter.name}&fvalue=${filter.value}&sort=${sort.name}&svalue=${sort.value}&search=${searchName}`
       )
       .then((response) => {
         setResult(response.data);
+        allResult = response.data;
         // console.log(response.data);
       })
       .catch((error) => {
@@ -36,12 +39,18 @@ const Results = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [filter, sort]);
+  }, [filter, sort, searchName]);
 
   return (
-    <section className="flex flex-col items-center justify-evenly min-h-screen p-2">
+    <section className="flex flex-col items-center gap-5 min-h-screen p-2">
       <h1 className="text-4xl font-bold my-5">Results</h1>
       <div className="flex flex-wrap gap-3">
+        <input
+          className="input input-bordered w-44"
+          type="text"
+          placeholder="Search"
+          onChange={(e) => setSearchName(e.target.value)}
+        />
         <select
           defaultValue="Sorting"
           className="select select-bordered"
@@ -97,9 +106,9 @@ const Results = () => {
             {!loading ? (
               results.map((result, ind) => (
                 <tr key={result.id} className="hover">
-                  <Link href={`/results/${result._id}`}>
-                    <td>{ind + 1}</td>
-                  </Link>
+                  <td>
+                    <Link href={`/results/${result._id}`}>{ind + 1}</Link>
+                  </td>
                   <Link href={`/results/${result._id}`}>
                     <td>{result.name}</td>
                   </Link>
