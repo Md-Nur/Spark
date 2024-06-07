@@ -43,7 +43,7 @@ const Results = () => {
   return (
     <section className="flex flex-col items-center gap-5 min-h-screen p-2">
       <h1 className="text-4xl font-bold my-5">Results</h1>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 justify-center items-center">
         <input
           className="input input-bordered w-44"
           type="text"
@@ -88,9 +88,9 @@ const Results = () => {
         </select>
       </div>
       <div className="overflow-x-auto">
-        <table className="table text-lg">
+        <table className="table lg:text-lg">
           {/* head */}
-          <thead className="text-xl">
+          <thead className="lg:text-xl">
             <tr>
               <th>Sl</th>
               <th>Name</th>
