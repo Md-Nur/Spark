@@ -8,10 +8,9 @@ import Loading from "@/components/Loading";
 
 const Results = () => {
   const [results, setResult] = useState([]);
-  let allResult = [];
   const [sort, setSort] = useState({
-    name: "",
-    value: 1,
+    name: "ygpa",
+    value: -1,
   });
   const [searchName, setSearchName] = useState("");
 
@@ -29,12 +28,12 @@ const Results = () => {
         `/api/student-info?filter=${filter.name}&fvalue=${filter.value}&sort=${sort.name}&svalue=${sort.value}&search=${searchName}`
       )
       .then((response) => {
-        setResult(response.data);
-        allResult = response.data;
+        console.log(response);
+        setResult(response?.data);
         // console.log(response.data);
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(error?.message);
       })
       .finally(() => {
         setLoading(false);
@@ -48,7 +47,7 @@ const Results = () => {
         <input
           className="input input-bordered w-44"
           type="text"
-          placeholder="Search"
+          placeholder="Search By Name"
           onChange={(e) => setSearchName(e.target.value)}
         />
         <select

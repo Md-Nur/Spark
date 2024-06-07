@@ -27,7 +27,7 @@ export async function PUT(request, { params }) {
     sgpa: gradeToSgpa(sub.grade),
     pass: sub.grade !== "F",
     improvement:
-      gradeToSgpa(sub.grade) < (sub.session === "22-23" ? 2.75 : 3.0) &&
+      gradeToSgpa(sub.grade) < (student.session === "22-23" ? 2.75 : 3.0) &&
       sub.type === "Theory" &&
       sub.grade !== "F",
   }));

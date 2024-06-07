@@ -75,6 +75,7 @@ const AddResult = () => {
       <HeroForm
         title="Add result"
         description={`Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi. year: ${queries.year}. Semester: ${queries.semester}. Session: ${queries.session}`}
+        imgUrl={result?.imgUrl}
       >
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">

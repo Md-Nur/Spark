@@ -23,6 +23,8 @@ const UpdateResult = ({ params }) => {
       });
   }, []);
 
+  // console.log(result);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -35,6 +37,7 @@ const UpdateResult = ({ params }) => {
       toast.error("Please fill all the fields");
       return;
     }
+
     axios
       .put(`/api/student-info/${params.id}`, result)
       .then((res) => {
@@ -61,6 +64,7 @@ const UpdateResult = ({ params }) => {
       <HeroForm
         title="Update result"
         description={`Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi. year: ${result.year}. Semester: ${result.semester}. Session: ${result.session}`}
+        imgUrl={result?.imgUrl}
       >
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">
