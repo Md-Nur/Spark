@@ -6,6 +6,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "@/components/Loading";
 import DeleteResult from "@/components/DeleteResult";
+import Link from "next/link";
 
 const SingleResult = ({ params }) => {
   const [result, setResult] = useState(null);
@@ -39,6 +40,12 @@ const SingleResult = ({ params }) => {
             <span className="btn btn-accent my-2 w-20">
               {result?.pass ? "Passed" : "Failed"}
             </span>
+            <Link
+              href={`/update-result/${result._id}`}
+              className="btn btn-info"
+            >
+              Update
+            </Link>
             <DeleteResult id={result._id} />
           </div>
         </div>
@@ -92,7 +99,9 @@ const SingleResult = ({ params }) => {
                     {result?.subjects
                       .filter((sub) => sub.improvement && sub.grade !== "F")
                       .map((sub) => (
-                        <li className="list-disc" key={sub.code}>{sub.name}</li>
+                        <li className="list-disc" key={sub.code}>
+                          {sub.name}
+                        </li>
                       ))}
                   </ul>
                 </div>
@@ -104,7 +113,9 @@ const SingleResult = ({ params }) => {
                     {result?.subjects
                       .filter((sub) => sub.grade === "F")
                       .map((sub) => (
-                        <li className="list-disc" key={sub.code}>{sub.name}</li>
+                        <li className="list-disc" key={sub.code}>
+                          {sub.name}
+                        </li>
                       ))}
                   </ul>
                 </div>

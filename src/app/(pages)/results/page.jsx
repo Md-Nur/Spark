@@ -84,6 +84,7 @@ const Results = () => {
           {/* head */}
           <thead className="text-xl">
             <tr>
+              <th>Sl</th>
               <th>Name</th>
               <th>Roll</th>
               <th className="hidden md:table-cell">Session</th>
@@ -94,8 +95,11 @@ const Results = () => {
           </thead>
           <tbody>
             {!loading ? (
-              results.map((result) => (
+              results.map((result, ind) => (
                 <tr key={result.id} className="hover">
+                  <Link href={`/results/${result._id}`}>
+                    <td>{ind + 1}</td>
+                  </Link>
                   <Link href={`/results/${result._id}`}>
                     <td>{result.name}</td>
                   </Link>
