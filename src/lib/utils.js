@@ -52,3 +52,25 @@ export function isPass(subjects, session) {
   }
   return isPass;
 }
+
+export const hall = {
+  0: "Not Assigned",
+  101: "Sher-E-Bangla Fazlul Haque Hall",
+  102: "Shah Mukhdum Hall",
+  103: "Nawab Abdul Latif Hall",
+  104: "Syed Amir Ali Hall",
+  105: "Shahid Shamsuzzoha Hall",
+  106: "Shahid Habibur Rahman Hall",
+  107: "Matihar Hall",
+  108: "Madar Bux Hall",
+  109: "Huseyn Shaheed Suhrawardy Hall",
+  110: "Shahid Ziaur Rahman Hall",
+  111: "Bangabandhu Sheikh Mujibur Rahman Hall",
+  120: "Mannujan Hall",
+  121: "Rokeya Hall",
+  122: "Tapashi Rabeya Hall",
+  123: "Begum Khaleda Zia Hall",
+  124: "Rahamatunnesa Hall",
+  125: "Bangamata Sheikh Fazilatunnesa Hall",
+  130: "Shahid Mir Abdul Quayyum International Dormitory",
+};
