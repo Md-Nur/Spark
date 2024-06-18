@@ -1,3 +1,5 @@
+"use client"
+import {  useUserAuth } from "@/context/userAuth";
 import Link from "next/link";
 import { MdMenu } from "react-icons/md";
 
@@ -15,6 +17,10 @@ const NavRoutes = () => {
 };
 
 const Navbar = () => {
+  const { userAuth } = useUserAuth();
+  // const {userAuth} = useContext(UserAuth)
+  // console.log(useUserAuth);
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -39,7 +45,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <a className="btn">{userAuth?.name}</a>
       </div>
     </div>
   );

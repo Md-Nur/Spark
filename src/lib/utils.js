@@ -35,7 +35,7 @@ export function getCredit(subjects) {
   return totalCredit;
 }
 
-export function isPass(subjects) {
+export function isPass(subjects, session) {
   let isPass = true;
   let totalCredit = 0;
 
@@ -45,7 +45,9 @@ export function isPass(subjects) {
     }
     totalCredit += Number(sub.credit);
   });
-  if (totalCredit - getCredit(subjects) > 6) {
+  if (totalCredit - getCredit(subjects) > 6 && session === "22-23") {
+    isPass = false;
+  } else if (totalCredit - getCredit(subjects) > 9 && session !== "22-23") {
     isPass = false;
   }
   return isPass;

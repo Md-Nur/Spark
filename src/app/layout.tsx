@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import { Bounce, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import UserAuthProvider from "@/provider/UserAuthProvider"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <UserAuthProvider>
         <Navbar />
         {children}
         <ToastContainer
@@ -35,6 +37,7 @@ export default function RootLayout({
           theme="colored"
           transition={Bounce}
         />
+        </UserAuthProvider>
       </body>
     </html>
   );

@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     year: Number(student.year),
     ygpa: calculateYgpa(student.subjects),
     credit: getCredit(student.subjects),
-    pass: isPass(student.subjects),
+    pass: isPass(student.subjects, student.session),
     subjects: onlySubjects as Student["subjects"],
   } as Student;
   console.log(data);
