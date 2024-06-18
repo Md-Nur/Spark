@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Login = () => {
   const router = useRouter();
   const { setUserAuth } = useUserAuth();
   const { register, handleSubmit } = useForm();
@@ -62,4 +62,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Login;
