@@ -5,12 +5,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "@/components/Loading";
+import { useUserAuth } from "@/context/userAuth";
 
 const Results = () => {
+  const { userAuth } = useUserAuth();
   const [results, setResult] = useState([]);
   const [sort, setSort] = useState({
-    name: "ygpa",
-    value: -1,
+    name: "roll",
+    value: 1,
   });
   const [searchName, setSearchName] = useState("");
 
@@ -93,10 +95,11 @@ const Results = () => {
             <tr>
               <th>Sl</th>
               <th>Name</th>
-              <th>Roll</th>
+              {userAuth && <th>Roll</th>}
               <th className="hidden md:table-cell">Session</th>
               <th>Credit</th>
-              <th>GPA</th>
+              {userAuth && <th>CGPA</th>}
+
               <th className="hidden sm:table-cell">Status</th>
             </tr>
           </thead>
@@ -108,14 +111,31 @@ const Results = () => {
                     <Link href={`/results/${result._id}`}>{ind + 1}</Link>
                   </td>
                   <Link href={`/results/${result._id}`}>
-                    <td>{result.name}</td>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img
+                              src={result.imgUrl}
+                              alt={result.name}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold">{result.name}</div>
+                          {/* <div className="text-sm opacity-50">{result</div> */}
+                        </div>
+                      </div>
+                    </td>
                   </Link>
-                  <td>
-                    <Link href={`/results/${result._id}`}>{result.roll}</Link>
-                  </td>
+                  {userAuth && (
+                    <td>
+                      <Link href={`/results/${result._id}`}>{result.roll}</Link>
+                    </td>
+                  )}
                   <td className="hidden md:table-cell">{result.session}</td>
                   <td>{result.credit}</td>
-                  <td>{parseFloat(result.ygpa).toFixed(3)}</td>
+                  {userAuth && <td>{parseFloat(result.ygpa).toFixed(3)}</td>}
                   <td
                     className={`hidden sm:table-cell ${
                       result.pass ? "text-green-500" : "text-red-500"

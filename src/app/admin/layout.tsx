@@ -10,13 +10,13 @@ export default function RootLayout({
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* Page content here */}
-        {children}
         <label
           htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
+          className="btn btn-primary drawer-button btn-sm lg:hidden"
         >
-          Open Menu
+          Open Slider
         </label>
+        {children}
       </div>
       <div className="drawer-side">
         <label
@@ -26,11 +26,20 @@ export default function RootLayout({
         ></label>
         <ul className="menu p-4 w-auto min-h-full bg-base-300 text-base-content">
           {/* Sidebar content here */}
-          <li className="btn btn-neutral m-1 btn-sm">
-            <Link href="/admin/add-result">Add Result</Link>
+          <li className="my-2">
+            <Link className="btn btn-neutral btn-sm" href="/admin">
+              Manage User
+            </Link>
           </li>
-          <li className="btn btn-neutral m-1 btn-sm">
-            <Link href="/admin/add-sub">Add Subject</Link>
+          <li className="my-2">
+            <Link className="btn btn-neutral btn-sm" href="/admin/add-result">
+              Add Result
+            </Link>
+          </li>
+          <li className="my-2">
+            <Link className="btn btn-neutral btn-sm" href="/admin/add-sub">
+              Add Subject
+            </Link>
           </li>
         </ul>
       </div>

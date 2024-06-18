@@ -16,10 +16,12 @@ const Login = () => {
       .post("/api/login", data)
       .then((res) => {
         setUserAuth(res.data);
+        toast.dismiss();
         toast.success("Logged in successfully");
         router.push("/");
       })
       .catch((err) => {
+        toast.dismiss();
         toast.error(err.message);
       });
   };

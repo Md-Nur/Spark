@@ -13,7 +13,7 @@ const HeroForm = ({ children, title, description, imgUrl = "" }) => {
             />
           )}
         </div>
-        <div className="card shrink-0 w-full lg:w-1/2 shadow-2xl bg-base-100 max-w-md">
+        <div className="card shrink-0 w-full lg:w-1/2 shadow-2xl bg-base-100 max-w-lg">
           {children}
         </div>
       </div>
