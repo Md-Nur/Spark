@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { UserAuth } from "../context/userAuth";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const UserAuthProvider = ({ children }) => {
   const [userAuth, setUserAuth] = useState();
@@ -9,15 +11,20 @@ const UserAuthProvider = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     // Fetch user data
-    setUserAuth({
-      name: "John Doe",
-      email: "",
-    });
-    setLoading(false);
+    axios
+      .get("/api/jwt")
+      .then((res) => {
+        // console.log(res.data);
+        setUserAuth(res.data);
+      })
+      .catch((err) => {
+        setUserAuth(null);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <UserAuth.Provider value={{ userAuth, loading }}>
+    <UserAuth.Provider value={{ userAuth, loading, setUserAuth, setLoading }}>
       {children}
     </UserAuth.Provider>
   );

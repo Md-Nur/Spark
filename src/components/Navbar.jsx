@@ -1,17 +1,25 @@
-"use client"
-import {  useUserAuth } from "@/context/userAuth";
+"use client";
+import { useUserAuth } from "@/context/userAuth";
 import Link from "next/link";
 import { MdMenu } from "react-icons/md";
+import LogoutBtn from "./LogoutBtn";
 
 const NavRoutes = () => {
+  const { userAuth } = useUserAuth();
   return (
     <>
       <li>
-        <Link href="/admin">Admin</Link>
-      </li>
-      <li>
         <Link href="/results">Results</Link>
       </li>
+      {userAuth ? (
+        <li>
+          <LogoutBtn />
+        </li>
+      ) : (
+        <li>
+          <Link href="/login">Login</Link>
+        </li>
+      )}
     </>
   );
 };
@@ -45,7 +53,35 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">{userAuth?.name}</a>
+        {userAuth && (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt={userAuth.name} src={userAuth.imgUrl} />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">Profile</a>
+              </li>
+              {userAuth.role === "Admin" && (
+                <li>
+                  <Link href="/admin">Admin</Link>
+                </li>
+              )}
+              <li>
+                <LogoutBtn />
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

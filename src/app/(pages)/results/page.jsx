@@ -28,7 +28,6 @@ const Results = () => {
         `/api/student-info?filter=${filter.name}&fvalue=${filter.value}&sort=${sort.name}&svalue=${sort.value}&search=${searchName}`
       )
       .then((response) => {
-        console.log(response);
         setResult(response?.data);
         // console.log(response.data);
       })
