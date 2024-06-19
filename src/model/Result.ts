@@ -4,7 +4,7 @@ export interface Result extends Document {
   user_id: string;
   year: number;
   semester: string;
-  gpa: number;
+  sgpa: number;
   credit: number;
   pass: boolean;
   subjects: {
@@ -23,7 +23,7 @@ const ResultSchema = new Schema<Result>({
   user_id: { type: String, required: true },
   year: { type: Number, required: true },
   semester: { type: String, enum: { values: ["Even", "Odd"] } },
-  gpa: { type: Number, required: true },
+  sgpa: { type: Number, required: true },
   credit: { type: Number, required: true },
   pass: { type: Boolean, required: true },
   subjects: [

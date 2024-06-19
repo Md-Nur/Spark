@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
 import StudentModel, { Student } from "@/model/Student";
 
-import { calculateYgpa, getCredit, gradeToSgpa, isPass } from "@/lib/utils";
+import { calculateSgpa, getCredit, gradeToSgpa, isPass } from "@/lib/utils";
 
 export async function POST(request: Request) {
   await dbConnect();
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     session: student.session,
     semester: student.semester,
     year: Number(student.year),
-    ygpa: calculateYgpa(student.subjects),
+    ygpa: calculateSgpa(student.subjects),
     credit: getCredit(student.subjects),
     pass: isPass(student.subjects, student.session),
     subjects: onlySubjects as Student["subjects"],

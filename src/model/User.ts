@@ -16,6 +16,8 @@ export interface User extends Document {
   facebook?: string;
   pass: boolean;
   role: string;
+  ygpa: number[];
+  cgpa: number;
 }
 
 const UserSchema = new Schema<User>({
@@ -34,6 +36,8 @@ const UserSchema = new Schema<User>({
   facebook: { type: String },
   pass: { type: Boolean, required: true },
   role: { type: String, enum: { values: ["Admin", "User"] }, default: "User" },
+  ygpa: { type: [Number], required: true },
+  cgpa: { type: Number, required: true },
 });
 
 const UserModel =

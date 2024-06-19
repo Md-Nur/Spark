@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "@/components/Loading";
 import { useUserAuth } from "@/context/userAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const Results = () => {
   const { userAuth } = useUserAuth();
@@ -15,31 +16,28 @@ const Results = () => {
     value: 1,
   });
   const [searchName, setSearchName] = useState("");
+  const [year, setYear] = useState();
+  const [semester, setSemester] = useState();
 
   const [filter, setFilter] = useState({
     name: "",
     value: true,
   });
 
-  const [loading, setLoading] = useState(false);
+  const result = useQuery({
+    queryKey: ["results", sort, filter, searchName, year, semester],
+    queryFn: async () => {
+      const response = await axios.get(
+        `/api/results?sort=${sort.name}&svalue=${sort.value}&filter=${filter.name}&fvalue=${filter.value}&search=${searchName}&year=${year}&semester=${semester}`
+      );
+      return response.data;
+    },
+  });
 
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(
-        `/api/student-info?filter=${filter.name}&fvalue=${filter.value}&sort=${sort.name}&svalue=${sort.value}&search=${searchName}`
-      )
-      .then((response) => {
-        setResult(response?.data);
-        // console.log(response.data);
-      })
-      .catch((error) => {
-        toast.error(error?.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [filter, sort, searchName]);
+  if (result.isError) {
+    toast.error(result.error.message);
+  }
+  console.log(result.data);
 
   return (
     <section className="flex flex-col items-center gap-5 min-h-screen p-2">
@@ -87,6 +85,24 @@ const Results = () => {
           <option value="session 21-22">Session 21-22</option>
           <option value="session 20-21">Session 20-21</option>
         </select>
+        <select
+          defaultValue=""
+          className="select select-bordered"
+          onChange={(e) => {
+            setYear(e.target.value.split(",")[0]);
+            setSemester(e.target.value.split(",")[1]);
+          }}
+        >
+          <option value="">Latest</option>
+          <option value="1,Odd">1st Year Odd Semester</option>
+          <option value="1,Even">1sr Year Even Semester</option>
+          <option value="2,Odd">2nd Year Odd Semester</option>
+          <option value="2,Even">2nd Year Even Semester</option>
+          <option value="3,Odd">3rd Year Odd Semester</option>
+          <option value="3,Even">3rd Year Even Semester</option>
+          <option value="4,Odd">4th Year Odd Semester</option>
+          <option value="4,Even">4th Year Even Semester</option>
+        </select>
       </div>
       <div className="overflow-x-auto">
         <table className="table lg:text-lg">
@@ -98,44 +114,63 @@ const Results = () => {
               {userAuth && <th>Roll</th>}
               <th className="hidden md:table-cell">Session</th>
               <th>Credit</th>
-              {userAuth && <th>CGPA</th>}
-
+              {userAuth && (
+                <>
+                  <th>SGPA</th>
+                  <th>YGPA</th>
+                  <th>CGPA</th>
+                </>
+              )}
               <th className="hidden sm:table-cell">Status</th>
             </tr>
           </thead>
           <tbody>
-            {!loading ? (
-              results.map((result, ind) => (
+            {!result.isLoading ? (
+              result.data.map((result, ind) => (
                 <tr key={result.id} className="hover">
                   <td>
-                    <Link href={`/results/${result._id}`}>{ind + 1}</Link>
+                    <Link href={`/student/${result.student._id}`}>
+                      {ind + 1}
+                    </Link>
                   </td>
-                  <Link href={`/results/${result._id}`}>
+                  <Link href={`/student/${result.student._id}`}>
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
                             <img
-                              src={result.imgUrl}
-                              alt={result.name}
+                              src={result.student.imgUrl}
+                              alt={result.student.name}
                             />
                           </div>
                         </div>
                         <div>
-                          <div className="font-bold">{result.name}</div>
-                          {/* <div className="text-sm opacity-50">{result</div> */}
+                          <div className="font-bold">{result.student.name}</div>
+                          <div className="text-sm opacity-50">
+                            {result.student.homeTown}
+                          </div>
                         </div>
                       </div>
                     </td>
                   </Link>
                   {userAuth && (
                     <td>
-                      <Link href={`/results/${result._id}`}>{result.roll}</Link>
+                      <Link href={`/student/${result.student._id}`}>
+                        {result.student.roll}
+                      </Link>
                     </td>
                   )}
-                  <td className="hidden md:table-cell">{result.session}</td>
+                  <td className="hidden md:table-cell">
+                    {result.student.session}
+                  </td>
                   <td>{result.credit}</td>
-                  {userAuth && <td>{parseFloat(result.ygpa).toFixed(3)}</td>}
+                  {userAuth && (
+                    <>
+                      <td>{result.sgpa.toFixed(3)}</td>
+                      <td>{result.student.ygpa[0]}</td>
+                      <td>{result.student.cgpa}</td>
+                    </>
+                  )}
                   <td
                     className={`hidden sm:table-cell ${
                       result.pass ? "text-green-500" : "text-red-500"
@@ -146,7 +181,39 @@ const Results = () => {
                 </tr>
               ))
             ) : (
-              <Loading />
+              <tr>
+                <td>
+                  <Loading />
+                </td>
+                <td>
+                  <Loading />
+                </td>
+                <td>
+                  <Loading />
+                </td>
+                <td>
+                  <Loading />
+                </td>
+                <td>
+                  <Loading />
+                </td>
+                {userAuth && (
+                  <>
+                    <td>
+                      <Loading />
+                    </td>
+                    <td>
+                      <Loading />
+                    </td>
+                    <td>
+                      <Loading />
+                    </td>
+                    <td>
+                      <Loading />
+                    </td>
+                  </>
+                )}
+              </tr>
             )}
           </tbody>
         </table>

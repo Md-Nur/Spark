@@ -14,13 +14,13 @@ export function gradeToSgpa(grade) {
   return gradeGpa[grade];
 }
 
-export function calculateYgpa(subjects) {
+export function calculateSgpa(subjects) {
   let totalSgpa = 0;
   let totalCredit = 0;
 
   subjects.forEach((subject) => {
-    (totalCredit += Number(subject.credit)),
-      (totalSgpa += gradeGpa[subject.grade] * Number(subject.credit));
+    totalCredit += Number(subject.credit);
+    totalSgpa += gradeGpa[subject.grade] * Number(subject.credit);
   });
   return totalSgpa / totalCredit;
 }
@@ -45,12 +45,23 @@ export function isPass(subjects, session) {
     }
     totalCredit += Number(sub.credit);
   });
-  if (totalCredit - getCredit(subjects) > 6 && session === "22-23") {
+  if (totalCredit - getCredit(subjects) > 8 && session === "22-23") {
     isPass = false;
   } else if (totalCredit - getCredit(subjects) > 9 && session !== "22-23") {
     isPass = false;
   }
   return isPass;
+}
+
+export function getCgpa(results) {
+  let totalYgpa = 0;
+  let totalCredit = 0;
+
+  results.forEach((result) => {
+    totalYgpa += result.ygpa * getCredit(result.subjects);
+    totalCredit += getCredit(result.subjects);
+  });
+  return totalYgpa / totalCredit;
 }
 
 export const hall = {
