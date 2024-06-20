@@ -19,6 +19,7 @@ const UserAuthProvider = ({ children }) => {
       })
       .catch((err) => {
         setUserAuth(null);
+        // toast.error(err.message);
       })
       .finally(() => setLoading(false));
   }, []);

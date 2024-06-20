@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const HeroForm = ({ children, title, description, imgUrl = "" }) => {
   return (
     <div className="hero min-h-screen bg-base-200 w-full">
@@ -6,9 +8,11 @@ const HeroForm = ({ children, title, description, imgUrl = "" }) => {
           <h1 className="text-5xl font-bold">{title}</h1>
           <p className="py-6 max-w-md">{description}</p>
           {imgUrl && (
-            <img
+            <Image
               src={imgUrl}
               alt={title}
+              width={500}
+              height={500}
               className="w-full max-w-md rounded-lg shadow-2xl object-cover"
             />
           )}

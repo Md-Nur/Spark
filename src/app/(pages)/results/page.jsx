@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import Loading from "@/components/Loading";
 import { useUserAuth } from "@/context/userAuth";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 
 const Results = () => {
   const { userAuth } = useUserAuth();
@@ -142,7 +143,9 @@ const Results = () => {
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
-                            <img
+                            <Image
+                              height={48}
+                              width={48}
                               src={result.student.imgUrl}
                               alt={result.student.name}
                             />

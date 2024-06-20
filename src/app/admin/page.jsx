@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { hall } from "@/lib/utils";
+import Image from "next/image";
 
 const Admin = () => {
   const [searchName, setSearchName] = useState("");
@@ -71,7 +72,9 @@ const Admin = () => {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                          <img
+                          <Image
+                            height={48}
+                            width={48}
                             src={user.imgUrl || "https://i.pravatar.cc/300"}
                             alt={user.name}
                           />

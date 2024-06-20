@@ -22,7 +22,7 @@ const Login = () => {
       })
       .catch((err) => {
         toast.dismiss();
-        toast.error(err.message);
+        toast.error(err.response.data.error || err.message);
       });
   };
   return (

@@ -8,9 +8,12 @@ export async function POST(req: Request) {
   const { roll, registrationNo } = await req.json();
   const user: User | null = await UserModel.findOne({ roll, registrationNo });
   if (!user) {
-    return Response.json({ error: "User not found" }, { status: 404 });
+    return Response.json(
+      { error: "Roll and registration number didn't match" },
+      { status: 404 }
+    );
   }
-  const token = jwt.sign({ ...user }, process.env.JWT_SECRET!, {
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET!, {
     expiresIn: "7d",
   });
 

@@ -2,6 +2,7 @@
 import { useUserAuth } from "@/context/userAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -18,7 +19,7 @@ const Student = ({ params }) => {
   const [year, setYear] = useState();
   const [semester, setSemester] = useState();
   const student = useQuery({
-    queryKey: ["student", params.id, year, semester],
+    queryKey: ["student", params.id, year, semester, userAuth],
     queryFn: async () => {
       const response = await axios.get(
         `/api/user/${params.id}?year=${year}&semester=${semester}`
@@ -31,8 +32,12 @@ const Student = ({ params }) => {
     <div className="hero min-h-screen bg-base-200 w-full">
       <div className="hero-content flex-col lg:flex-row justify-around w-full md:items-start h-full py-14">
         <div className="flex flex-col justify-center gap-2 border-b-2 border-base-content md:border-b-0 w-auto p-1">
-          <h1 className="text-3xl font-bold uppercase text-center md:text-left">{student.data?.name}</h1>
-          <img
+          <h1 className="text-3xl font-bold uppercase text-center md:text-left">
+            {student.data?.name}
+          </h1>
+          <Image
+            height={300}
+            width={300}
             src={student.data?.imgUrl}
             alt={student.data?.name}
             className="w-72 h-72 rounded-lg shadow-2xl object-cover mx-auto md:mx-0"
@@ -158,7 +163,9 @@ const Student = ({ params }) => {
         </div>
         {userAuth ? (
           <div className="border-t-2 border-base-content md:border-t-0">
-            <h1 className="text-3xl font-bold mb-5 text-center md:text-left">RESULT</h1>
+            <h1 className="text-3xl font-bold mb-5 text-center md:text-left">
+              RESULT
+            </h1>
             <div className="flex w-full justify-evenly flex-wrap gap-2">
               <select
                 defaultValue=""
@@ -232,15 +239,15 @@ const Student = ({ params }) => {
             )}
             {student.data?.result && (
               <div className="flex w-full justify-evenly border-t-2 border-base-content mt-5 mb-0 py-5">
-                <button className="btn btn-primary">
+                <button className="btn btn-neutral">
                   SGPA:
                   {student.data?.result?.sgpa.toFixed(3)}
                 </button>
-                <button className="btn btn-secondary">
+                <button className="btn btn-neutral">
                   YGPA
                   {student.data?.ygpa}
                 </button>
-                <button className="btn btn-accent">
+                <button className="btn btn-neutral">
                   CGPA{student.data?.cgpa}
                 </button>
               </div>

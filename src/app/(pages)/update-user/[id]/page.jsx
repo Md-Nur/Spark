@@ -8,8 +8,8 @@ import { useUserAuth } from "@/context/userAuth";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-const UpdateResult = ({ params }) => {
-  const { userAuth, loading } = useUserAuth();
+const UpdateUser = ({ params }) => {
+  const { userAuth, loading, setUserAuth } = useUserAuth();
   const { register, handleSubmit, reset } = useForm();
   const router = useRouter();
 
@@ -37,10 +37,14 @@ const UpdateResult = ({ params }) => {
 
       await axios.put(`/api/user/${params.id}`, data);
 
+      user.refetch();
+      // if (userAuth?._id === params.id) {
+        const newUser = await axios.get(`/api/jwt`);
+        setUserAuth(newUser.data);
+      // }
+      router.push(`/student/${params.id}`);
       toast.dismiss();
       toast.success("User info updated successfully");
-      router.push(`/student/${params.id}`);
-      user.refetch();
       reset();
     } catch (error) {
       toast.dismiss();
@@ -52,6 +56,7 @@ const UpdateResult = ({ params }) => {
 
   if (userAuth?._id !== params.id && userAuth?.role !== "Admin") {
     toast.error("Only Admin or the own user can modify his/her info");
+    router.push(`/student/${params.id}`);
     return <Loading />;
   }
 
@@ -193,4 +198,4 @@ const UpdateResult = ({ params }) => {
   );
 };
 
-export default UpdateResult;
+export default UpdateUser;
