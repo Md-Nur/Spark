@@ -41,7 +41,7 @@ const Results = () => {
   console.log(result.data);
 
   return (
-    <section className="flex flex-col items-center gap-5 min-h-screen p-2">
+    <section className="flex flex-col items-center gap-5 min-h-screen p-2 w-full">
       <h1 className="text-4xl font-bold my-5">Results</h1>
       <div className="flex flex-wrap gap-3 justify-center items-center">
         <input
@@ -110,12 +110,12 @@ const Results = () => {
         </select>
       </div>
       <div className="overflow-x-auto">
-        <table className="table lg:text-lg">
+        <table className="table table-xs lg:table-md lg:text-base">
           {/* head */}
           <thead className="lg:text-xl">
             <tr>
-              <th>Sl</th>
-              <th>Name</th>
+              <th className="hidden md:table-cell">Sl</th>
+              <th className="">Name</th>
               {userAuth && <th>Roll</th>}
               <th className="hidden md:table-cell">Session</th>
               <th>Credit</th>
@@ -133,7 +133,7 @@ const Results = () => {
             {!result.isLoading ? (
               result.data.map((result, ind) => (
                 <tr key={result.id} className="hover">
-                  <td>
+                  <td className="hidden md:table-cell">
                     <Link href={`/student/${result.student._id}`}>
                       {ind + 1}
                     </Link>
@@ -141,7 +141,7 @@ const Results = () => {
                   <Link href={`/student/${result.student._id}`}>
                     <td>
                       <div className="flex items-center gap-3">
-                        <div className="avatar">
+                        <div className="hidden md:avatar">
                           <div className="mask mask-squircle w-12 h-12">
                             <Image
                               height={48}

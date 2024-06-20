@@ -185,22 +185,19 @@ const Student = ({ params }) => {
                 <option value="4,Odd">4th Year Odd Semester</option>
                 <option value="4,Even">4th Year Even Semester</option>
               </select>
+              {(userAuth?._id === params.id || userAuth?.role === "Admin") &&
+                student.data?.result && (
+                  <button className="btn btn-warning ml-2">Edit Result</button>
+                )}
               {(userAuth?._id === params.id || userAuth?.role === "Admin") && (
-                <>
-                  {student.data?.result && (
-                    <button className="btn btn-warning ml-2">
-                      Edit Result
-                    </button>
-                  )}
-                  <button className="btn btn-info ml-2">Add Result</button>
-                </>
+                <button className="btn btn-info ml-2">Add Result</button>
               )}
             </div>
             {student.data?.result ? (
               <div className="overflow-x-auto">
-                <table className="table text-base">
+                <table className="table table-xs md:text-base md:table-sm lg:table-lg">
                   {/* head */}
-                  <thead className="text-base">
+                  <thead className="">
                     <tr>
                       <th>Subject Name</th>
                       <th className="hidden lg:table-cell">Code</th>
@@ -238,7 +235,7 @@ const Student = ({ params }) => {
               </div>
             )}
             {student.data?.result && (
-              <div className="flex w-full justify-evenly border-t-2 border-base-content mt-5 mb-0 py-5">
+              <div className="flex w-full justify-evenly border-t-2 border-base-content mt-5 mb-0 py-5 flex-wrap gap-2">
                 <button className="btn btn-neutral">
                   SGPA:
                   {student.data?.result?.sgpa.toFixed(3)}
