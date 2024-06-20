@@ -29,16 +29,16 @@ const Student = ({ params }) => {
 
   return (
     <div className="hero min-h-screen bg-base-200 w-full">
-      <div className="hero-content flex-col lg:flex-row justify-around w-full items-start h-full py-14">
-        <div className="flex flex-col justify-center gap-2 border-b-2 border-base-content md:border-b-0">
-          <h1 className="text-3xl font-bold uppercase">{student.data?.name}</h1>
+      <div className="hero-content flex-col lg:flex-row justify-around w-full md:items-start h-full py-14">
+        <div className="flex flex-col justify-center gap-2 border-b-2 border-base-content md:border-b-0 w-auto p-1">
+          <h1 className="text-3xl font-bold uppercase text-center md:text-left">{student.data?.name}</h1>
           <img
             src={student.data?.imgUrl}
             alt={student.data?.name}
-            className="w-72 h-72 rounded-lg shadow-2xl object-cover"
+            className="w-72 h-72 rounded-lg shadow-2xl object-cover mx-auto md:mx-0"
           />
           <div className="overflow-x-auto">
-            <table className="table table-sm">
+            <table className="table table-xs md:table-sm">
               <tbody>
                 <tr>
                   <th className="hover">Roll</th>
@@ -158,8 +158,8 @@ const Student = ({ params }) => {
         </div>
         {userAuth ? (
           <div className="border-t-2 border-base-content md:border-t-0">
-            <h1 className="text-3xl font-bold mb-5">RESULT</h1>
-            <div className="flex w-full justify-evenly">
+            <h1 className="text-3xl font-bold mb-5 text-center md:text-left">RESULT</h1>
+            <div className="flex w-full justify-evenly flex-wrap gap-2">
               <select
                 defaultValue=""
                 className="select select-bordered"
