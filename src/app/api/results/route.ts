@@ -55,6 +55,9 @@ export async function GET(req: Request) {
         "student.roll": {
           $mod: ["$student.roll", 1000],
         },
+        "student.ygpa": {
+          $arrayElemAt: ["$student.ygpa", latest.year - 1],
+        },
       },
     },
     {

@@ -9,6 +9,9 @@ const NavRoutes = () => {
   return (
     <>
       <li>
+        <Link href="/">Home</Link>
+      </li>
+      <li>
         <Link href="/results">Results</Link>
       </li>
       {userAuth ? (
@@ -18,6 +21,11 @@ const NavRoutes = () => {
       ) : (
         <li>
           <Link href="/login">Login</Link>
+        </li>
+      )}
+      {userAuth && userAuth.role === "Admin" && (
+        <li>
+          <Link href="/admin">Admin</Link>
         </li>
       )}
     </>

@@ -171,7 +171,7 @@ const Results = () => {
                   {userAuth && (
                     <>
                       <td>{result.sgpa.toFixed(3)}</td>
-                      <td>{result.student.ygpa[0]}</td>
+                      <td>{result.student.ygpa}</td>
                       <td>{result.student.cgpa}</td>
                     </>
                   )}

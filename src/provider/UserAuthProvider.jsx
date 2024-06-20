@@ -19,6 +19,7 @@ const UserAuthProvider = ({ children }) => {
       })
       .catch((err) => {
         setUserAuth(null);
+        toast.error("Failed to fetch user data");
       })
       .finally(() => setLoading(false));
   }, []);

@@ -34,6 +34,7 @@ const Admin = () => {
           {/* head */}
           <thead>
             <tr>
+              <th>Edit Info</th>
               <th>Name & Home</th>
               <th>Roll & Hall</th>
               <th>Session</th>
@@ -61,7 +62,12 @@ const Admin = () => {
             {users.data?.map((user) => (
               <tr key={user._id}>
                 <td>
-                  <Link href={`/profile/${user._id}`}>
+                  <Link href={`/update-user/${user._id}`}>
+                    <button className="btn btn-sm btn-warning">Edit</button>
+                  </Link>
+                </td>
+                <td>
+                  <Link href={`/student/${user._id}`}>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
@@ -90,7 +96,9 @@ const Admin = () => {
                 </td>
                 <td>{user.session}</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">{user.role}</button>
+                  <button className="btn btn-neutral btn-sm">
+                    {user.role}
+                  </button>
                 </th>
               </tr>
             ))}

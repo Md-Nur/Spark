@@ -1,3 +1,5 @@
+"use client";
+import { useUserAuth } from "@/context/userAuth";
 import Link from "next/link";
 
 export default function RootLayout({
@@ -5,6 +7,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { userAuth }: any = useUserAuth();
+  if (userAuth?.role !== "Admin") {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <h1 className="text-2xl font-bold text-center">
+          You are not authorized to view this page
+        </h1>
+      </div>
+    );
+  }
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
