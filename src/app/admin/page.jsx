@@ -61,7 +61,7 @@ const Admin = () => {
               </tr>
             )}
             {users.data?.map((user) => (
-              <tr key={user._id}>
+              <tr key={user._id} className="hover">
                 <td>
                   <Link href={`/update-user/${user._id}`}>
                     <button className="btn btn-sm btn-warning">Edit</button>
