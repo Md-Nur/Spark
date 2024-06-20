@@ -21,14 +21,16 @@ const UpdateResult = ({ params }) => {
 
   const onSubmit = async (data) => {
     toast.loading("Updating user info...");
-    const imgData = new FormData();
-    imgData.append("image", data.imgFile[0]);
     try {
-      const imgURL = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
-        imgData
-      );
-      data.imgUrl = imgURL.data.data.url;
+      if (data.imgFile.length) {
+        const imgData = new FormData();
+        imgData.append("image", data.imgFile[0]);
+        const imgURL = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+          imgData
+        );
+        data.imgUrl = imgURL.data.data.url;
+      }
       delete data.imgFile;
 
       await axios.put(`/api/user/${params.id}`, data);

@@ -2,7 +2,16 @@
 import { useUserAuth } from "@/context/userAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Link from "next/link";
 import { useState } from "react";
+import {
+  FaFacebook,
+  FaLinkedin,
+  FaMailBulk,
+  FaPhone,
+  FaTelegram,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const Student = ({ params }) => {
   const { userAuth } = useUserAuth();
@@ -29,59 +38,128 @@ const Student = ({ params }) => {
             className="w-72 h-72 rounded-lg shadow-2xl object-cover"
           />
           <div className="overflow-x-auto">
-            <table className="table">
+            <table className="table table-sm">
               <tbody>
-                {/* row 1 */}
                 <tr>
                   <th className="hover">Roll</th>
                   <td>{student.data?.roll}</td>
                 </tr>
-                {/* row 2 */}
                 <tr className="hover">
                   <th>Session</th>
                   <td>{student.data?.session}</td>
                 </tr>
-                {/* row 3 */}
-                <tr>
-                  <th>Home-Town</th>
-                  <td>{student.data?.homeTown}</td>
-                </tr>
+                {student.data?.homeTown && (
+                  <tr>
+                    <th>Home-Town</th>
+                    <td>{student.data?.homeTown}</td>
+                  </tr>
+                )}
+                {student.data?.phone && (
+                  <tr>
+                    <th>Phone</th>
+                    <td>{student.data?.phone}</td>
+                  </tr>
+                )}
+                {student.data?.email && (
+                  <tr>
+                    <th>Email</th>
+                    <td>{student.data?.email}</td>
+                  </tr>
+                )}
                 <tr>
                   <th>Allotted Hall</th>
                   <td>{student.data?.hall}</td>
                 </tr>
-                {userAuth && (
-                  <>
-                    <tr>
-                      <th>SGPA</th>
-                      <td>{student.data?.result?.sgpa.toFixed(3)}</td>
-                    </tr>
-                    <tr>
-                      <th>YGPA</th>
-                      <td>{student.data?.ygpa}</td>
-                    </tr>
-                    <tr>
-                      <th>CGPA</th>
-                      <td>{student.data?.cgpa}</td>
-                    </tr>
-                  </>
-                )}
               </tbody>
             </table>
           </div>
 
+          <div className="flex border-t-2 border-base-content justify-between w-full">
+            {student.data?.facebook && (
+              <a
+                href={student.data?.facebook}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-circle"
+              >
+                <FaFacebook className="text-3xl" />
+              </a>
+            )}
+            {student.data?.linkedin && (
+              <a
+                href={student.data?.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="btn"
+              >
+                <FaLinkedin className="text-3xl" />
+              </a>
+            )}
+            {student.data?.email && (
+              <div className="tooltip" data-tip={student.data.email}>
+                <a
+                  href={`mailto:${student.data.email}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-circle"
+                >
+                  <FaMailBulk className="text-3xl" />
+                </a>
+              </div>
+            )}
+            {student.data?.phone && (
+              <div className="tooltip" data-tip={student.data.phone}>
+                <a
+                  href={`tel:${student.data.phone}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-circle"
+                >
+                  <FaPhone className="text-3xl" />
+                </a>
+              </div>
+            )}
+            {student.data?.whatsapp && (
+              <div className="tooltip" data-tip={student.data.whatsapp}>
+                <a
+                  href={`https://wa.me/${student.data.whatsapp}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-circle"
+                >
+                  <FaWhatsapp className="text-3xl" />
+                </a>
+              </div>
+            )}
+            {student.data?.telegram && (
+              <div className="tooltip" data-tip={student.data.telegram}>
+                <a
+                  href={`https://t.me/${student.data.telegram}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-circle"
+                >
+                  <FaTelegram className="text-3xl" />
+                </a>
+              </div>
+            )}
+          </div>
+
           <div className="flex flex-wrap w-full justify-center items-center border-t-2 border-base-content gap-2 py-2">
             {(userAuth?._id === params.id || userAuth?.role === "Admin") && (
-              <button className="btn btn-warning">
+              <Link
+                href={`/update-user/${student.data?._id}`}
+                className="btn btn-warning"
+              >
                 Edit Student Information
-              </button>
+              </Link>
             )}
           </div>
         </div>
         {userAuth ? (
           <div className="border-t-2 border-base-content md:border-t-0">
             <h1 className="text-3xl font-bold mb-5">RESULT</h1>
-            <div className="flex w-full justify-center">
+            <div className="flex w-full justify-evenly">
               <select
                 defaultValue=""
                 className="select select-bordered"
@@ -102,28 +180,32 @@ const Student = ({ params }) => {
               </select>
               {(userAuth?._id === params.id || userAuth?.role === "Admin") && (
                 <>
-                  <button className="btn btn-warning ml-2">Edit Result</button>
+                  {student.data?.result && (
+                    <button className="btn btn-warning ml-2">
+                      Edit Result
+                    </button>
+                  )}
                   <button className="btn btn-info ml-2">Add Result</button>
                 </>
               )}
             </div>
-            <div className="overflow-x-auto">
-              <table className="table text-base">
-                {/* head */}
-                <thead className="text-base">
-                  <tr>
-                    <th>Subject Name</th>
-                    <th className="hidden lg:table-cell">Code</th>
-                    <th>Credit</th>
-                    <th>Grade</th>
-                    <th>GPA</th>
-                    <th className="hidden sm:table-cell">Type</th>
-                    <th className="hidden md:table-cell">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {student.data?.result ? (
-                    student.data?.result.subjects.map((subject) => (
+            {student.data?.result ? (
+              <div className="overflow-x-auto">
+                <table className="table text-base">
+                  {/* head */}
+                  <thead className="text-base">
+                    <tr>
+                      <th>Subject Name</th>
+                      <th className="hidden lg:table-cell">Code</th>
+                      <th>Credit</th>
+                      <th>Grade</th>
+                      <th>GPA</th>
+                      <th className="hidden sm:table-cell">Type</th>
+                      <th className="hidden md:table-cell">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {student.data?.result.subjects.map((subject) => (
                       <tr key={subject.id} className="hover">
                         <td>{subject.name}</td>
                         <td className="hidden lg:table-cell">{subject.code}</td>
@@ -139,17 +221,30 @@ const Student = ({ params }) => {
                           {subject.pass ? "Pass" : "Fail"}
                         </td>
                       </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="7" className="text-center">
-                        No Result Found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="text-4xl font-bold text-center my-10">
+                No Result Found
+              </div>
+            )}
+            {student.data?.result && (
+              <div className="flex w-full justify-evenly border-t-2 border-base-content mt-5 mb-0 py-5">
+                <button className="btn btn-primary">
+                  SGPA:
+                  {student.data?.result?.sgpa.toFixed(3)}
+                </button>
+                <button className="btn btn-secondary">
+                  YGPA
+                  {student.data?.ygpa}
+                </button>
+                <button className="btn btn-accent">
+                  CGPA{student.data?.cgpa}
+                </button>
+              </div>
+            )}
             {student.data?.result &&
               (student.data?.result?.pass ? (
                 student.data?.result.subjects.find(
