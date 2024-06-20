@@ -70,10 +70,29 @@ export async function GET(req: Request) {
     },
   ];
 
-  if (sort && (svalue === "1" || svalue === "-1")) {
+  if (
+    sort &&
+    (svalue === "1" || svalue === "-1") &&
+    (sort === "roll" || sort === "ygpa" || sort === "cgpa")
+  ) {
     const sortStage: any = {};
     sortStage[`student.${sort}`] = parseInt(svalue);
     pipeline.push({ $sort: sortStage });
+  } else if (sort && (svalue === "1" || svalue === "-1")) {
+    const sortStage: any = {};
+    sortStage[sort] = parseInt(svalue);
+    // console.log(sortStage);
+    pipeline.push({ $sort: sortStage });
+  }
+
+  if (filter === "session" && fvalue) {
+    const filterStage: any = {};
+    filterStage["student.session"] = fvalue;
+    pipeline.push({ $match: filterStage });
+  } else if (filter === "pass" && fvalue) {
+    const filterStage: any = {};
+    filterStage.pass = fvalue === "true";
+    pipeline.push({ $match: filterStage });
   }
 
   const resultUser = await ResultModel.aggregate(pipeline);

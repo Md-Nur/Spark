@@ -65,8 +65,12 @@ const Results = () => {
           <option value="roll desc">Roll descending</option>
           <option value="credit asc">Credit ascending</option>
           <option value="credit desc">Credit descending</option>
-          <option value="ygpa asc">GPA ascending</option>
-          <option value="ygpa desc">GPA descending</option>
+          <option value="sgpa asc">SGPA ascending</option>
+          <option value="sgpa desc">SGPA descending</option>
+          <option value="ygpa asc">YGPA ascending</option>
+          <option value="ygpa desc">YGPA descending</option>
+          <option value="cgpa asc">CGPA ascending</option>
+          <option value="cgpa desc">CGPA descending</option>
         </select>
         <select
           defaultValue="Filter"
