@@ -6,10 +6,12 @@ import Loading from "@/components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useUserAuth } from "@/context/userAuth";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 const UpdateResult = ({ params }) => {
   const { userAuth, loading } = useUserAuth();
   const { register, handleSubmit, reset } = useForm();
+  const router = useRouter();
 
   const user = useQuery({
     queryKey: ["user", params.id],
@@ -37,6 +39,7 @@ const UpdateResult = ({ params }) => {
 
       toast.dismiss();
       toast.success("User info updated successfully");
+      router.push(`/student/${params.id}`);
       user.refetch();
       reset();
     } catch (error) {
