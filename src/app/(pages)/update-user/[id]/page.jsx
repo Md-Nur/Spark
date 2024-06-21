@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useUserAuth } from "@/context/userAuth";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { FaUpload } from "react-icons/fa";
 
 const UpdateUser = ({ params }) => {
   const { userAuth, loading, setUserAuth } = useUserAuth();
@@ -39,8 +40,8 @@ const UpdateUser = ({ params }) => {
 
       user.refetch();
       // if (userAuth?._id === params.id) {
-        const newUser = await axios.get(`/api/jwt`);
-        setUserAuth(newUser.data);
+      const newUser = await axios.get(`/api/jwt`);
+      setUserAuth(newUser.data);
       // }
       router.push(`/student/${params.id}`);
       toast.dismiss();
@@ -69,7 +70,27 @@ const UpdateUser = ({ params }) => {
           `}
         imgUrl={user.data?.imgUrl}
       >
-        <form className="card-body bg-base-200 w-full p-2 md:p-7" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="card-body bg-base-200 w-full p-2 md:p-7"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="form-control py-5 rounded-xl m-1 bg-neutral">
+            <label
+              htmlFor="imgFile"
+              className="flex flex-row items-center gap-2 px-1 justify-evenly"
+            >
+              <FaUpload className="text-4xl btn-neutral" />
+              <input
+                id="imgFile"
+                type="file"
+                placeholder="Image Url"
+                className="hidden"
+                {...register("imgFile")}
+              />
+              <span className="text-lg uppercase text-neutral-content">Upload Profile Image</span>
+            </label>
+          </div>
+
           <div className="form-control">
             <input
               type="text"
@@ -98,15 +119,6 @@ const UpdateUser = ({ params }) => {
               {...register("roll")}
               required
               min={2010079100}
-            />
-          </div>
-
-          <div className="form-control">
-            <input
-              type="file"
-              placeholder="Image Url"
-              className="input input-bordered file-input w-full"
-              {...register("imgFile")}
             />
           </div>
 

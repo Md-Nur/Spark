@@ -45,7 +45,7 @@ const Navbar = () => {
     const localTheme = localStorage.getItem("theme");
 
     if (localTheme && !theme) setTheme(localTheme);
-    else if (!localTheme && !theme) setTheme("corporate");
+    else if (!localTheme && !theme) setTheme("emerald");
     else if (theme) localStorage.setItem("theme", theme);
 
     const html = document.querySelector("html");
@@ -84,7 +84,7 @@ const Navbar = () => {
             type="checkbox"
             className="toggle"
             defaultChecked={theme === "dark"}
-            onChange={(e) => setTheme(e.target.checked ? "dark" : "corporate")}
+            onChange={(e) => setTheme(e.target.checked ? "dark" : "emerald")}
           />
           <FaMoon />
         </label>
