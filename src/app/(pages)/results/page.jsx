@@ -43,7 +43,7 @@ const Results = () => {
   return (
     <section className="flex flex-col items-center gap-5 min-h-screen p-2 w-full">
       <h1 className="text-4xl font-bold my-5">Results</h1>
-      <div className="flex flex-wrap gap-3 justify-center items-center">
+      <div className="flex flex-wrap gap-3 justify-center items-center w-full">
         <input
           className="input input-bordered w-44"
           type="text"
@@ -109,15 +109,14 @@ const Results = () => {
           <option value="4,Even">4th Year Even Semester</option>
         </select>
       </div>
-      <div className="overflow-x-auto">
-        <table className="table table-xs lg:table-md lg:text-base">
-          {/* head */}
+      <div className="overflow-x-auto w-full lg:w-auto">
+        <table className="table table-xs md:table-sm lg:table-md xl:table-lg lg:text-base">
           <thead className="lg:text-xl">
             <tr>
-              <th className="hidden md:table-cell">Sl</th>
+              <th className="">Sl</th>
               <th className="">Name</th>
               {userAuth && <th>Roll</th>}
-              <th className="hidden md:table-cell">Session</th>
+              <th className="">Session</th>
               <th>Credit</th>
               {userAuth && (
                 <>
@@ -126,14 +125,14 @@ const Results = () => {
                   <th>CGPA</th>
                 </>
               )}
-              <th className="hidden sm:table-cell">Status</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {!result.isLoading ? (
               result.data.map((result, ind) => (
                 <tr key={result.id} className="hover">
-                  <td className="hidden md:table-cell">
+                  <td className="">
                     <Link href={`/student/${result.student._id}`}>
                       {ind + 1}
                     </Link>
@@ -141,7 +140,7 @@ const Results = () => {
                   <Link href={`/student/${result.student._id}`}>
                     <td>
                       <div className="flex items-center gap-3">
-                        <div className="hidden md:avatar">
+                        <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
                             <Image
                               height={48}
@@ -167,9 +166,7 @@ const Results = () => {
                       </Link>
                     </td>
                   )}
-                  <td className="hidden md:table-cell">
-                    {result.student.session}
-                  </td>
+                  <td className="">{result.student.session}</td>
                   <td>{result.credit}</td>
                   {userAuth && (
                     <>
@@ -179,7 +176,7 @@ const Results = () => {
                     </>
                   )}
                   <td
-                    className={`hidden sm:table-cell ${
+                    className={`${
                       result.pass ? "text-green-500" : "text-red-500"
                     }`}
                   >

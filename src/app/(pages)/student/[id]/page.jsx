@@ -13,7 +13,7 @@ import {
   FaTelegram,
   FaWhatsapp,
 } from "react-icons/fa";
-import Loading from "@/components/Loading"
+import Loading from "@/components/Loading";
 
 const Student = ({ params }) => {
   const { userAuth } = useUserAuth();
@@ -29,7 +29,7 @@ const Student = ({ params }) => {
     },
   });
 
-  if(student.isLoading) return <Loading />;
+  if (student.isLoading) return <Loading />;
 
   return (
     <div className="hero min-h-screen bg-base-200 w-full">
@@ -165,7 +165,7 @@ const Student = ({ params }) => {
           </div>
         </div>
         {userAuth ? (
-          <div className="border-t-2 border-base-content md:border-t-0">
+          <div className="border-t-2 border-base-content md:border-t-0 w-full">
             <h1 className="text-3xl font-bold mb-5 text-center md:text-left">
               RESULT
             </h1>
@@ -197,31 +197,31 @@ const Student = ({ params }) => {
               )}
             </div>
             {student.data?.result ? (
-              <div className="overflow-x-auto">
-                <table className="table table-xs md:text-base md:table-sm lg:table-lg">
+              <div className="overflow-x-auto w-72 sm:w-full mx-auto my-5">
+                <table className="table table-xs md:table-sm lg:table-md xl:table-lg lg:text-base">
                   {/* head */}
                   <thead className="">
                     <tr>
                       <th>Subject Name</th>
-                      <th className="hidden lg:table-cell">Code</th>
+                      <th className="">Code</th>
                       <th>Credit</th>
                       <th>Grade</th>
                       <th>GPA</th>
-                      <th className="hidden sm:table-cell">Type</th>
-                      <th className="hidden md:table-cell">Status</th>
+                      <th className="">Type</th>
+                      <th className="">Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     {student.data?.result.subjects.map((subject) => (
                       <tr key={subject.id} className="hover">
                         <td>{subject.name}</td>
-                        <td className="hidden lg:table-cell">{subject.code}</td>
+                        <td className="">{subject.code}</td>
                         <td>{subject.credit}</td>
                         <td>{subject.grade}</td>
                         <td>{subject.sgpa}</td>
-                        <td className="hidden sm:table-cell">{subject.type}</td>
+                        <td className="">{subject.type}</td>
                         <td
-                          className={`hidden md:table-cell ${
+                          className={`${
                             subject.pass ? "text-green-500" : "text-red-500"
                           }`}
                         >
