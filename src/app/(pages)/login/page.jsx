@@ -31,7 +31,7 @@ const Login = () => {
       description="You have to enter your roll number and password to login this website. Your password is your registration number."
       imgUrl="https://i.ibb.co/SxBcL4B/IMG20240527193319.jpg"
     >
-      <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+      <form className="card-body w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Roll</span>

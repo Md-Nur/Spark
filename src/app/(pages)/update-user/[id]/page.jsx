@@ -69,12 +69,12 @@ const UpdateUser = ({ params }) => {
           `}
         imgUrl={user.data?.imgUrl}
       >
-        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+        <form className="card-body w-full p-2 md:p-7" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
             <input
               type="text"
               placeholder="Name"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.name}
               {...register("name")}
               required
@@ -84,7 +84,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="email"
               placeholder="Email"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.email}
               {...register("email")}
             />
@@ -93,7 +93,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="number"
               placeholder="Roll"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.roll}
               {...register("roll")}
               required
@@ -105,14 +105,14 @@ const UpdateUser = ({ params }) => {
             <input
               type="file"
               placeholder="Image Url"
-              className="input input-bordered file-input"
+              className="input input-bordered file-input w-full"
               {...register("imgFile")}
             />
           </div>
 
           <div className="form-control">
             <select
-              className="select select-bordered"
+              className="select select-bordered w-full"
               defaultValue={user.data?.session}
               {...register("session")}
               required
@@ -128,7 +128,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="number"
               placeholder="Registration Number"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.registrationNo}
               {...register("registrationNo")}
               required
@@ -138,7 +138,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="text"
               placeholder="Home Town"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.homeTown}
               {...register("homeTown")}
             />
@@ -147,7 +147,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="text"
               placeholder="Phone Number"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.phone}
               {...register("phone")}
             />
@@ -156,7 +156,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="text"
               placeholder="Whatsapp Number"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.whatsapp}
               {...register("whatsapp")}
             />
@@ -165,7 +165,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="text"
               placeholder="Telegram Number"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.telegram}
               {...register("telegram")}
             />
@@ -174,7 +174,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="url"
               placeholder="LinkedIn Profile Link"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.linkedin}
               {...register("linkedin")}
             />
@@ -183,7 +183,7 @@ const UpdateUser = ({ params }) => {
             <input
               type="url"
               placeholder="Facebook Profile Link"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               defaultValue={user.data?.facebook}
               {...register("facebook")}
             />
