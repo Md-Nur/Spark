@@ -47,7 +47,10 @@ export async function GET(req: Request) {
     },
     {
       $match: {
-        "student.name": { $regex: search, $options: "i" },
+        $or: [
+          { "student.name": { $regex: search, $options: "i" } },
+          { "student.homeTown": { $regex: search, $options: "i" } },
+        ],
       },
     },
     {
@@ -73,10 +76,15 @@ export async function GET(req: Request) {
     },
   ];
 
-  if (
+  if (sort === "roll") {
+    const sortStage: any = {};
+    sortStage["student.session"] = -1;
+    sortStage["student.roll"] = parseInt(svalue);
+    pipeline.push({ $sort: sortStage });
+  } else if (
     sort &&
     (svalue === "1" || svalue === "-1") &&
-    (sort === "roll" || sort === "ygpa" || sort === "cgpa")
+    (sort === "ygpa" || sort === "cgpa")
   ) {
     const sortStage: any = {};
     sortStage[`student.${sort}`] = parseInt(svalue);

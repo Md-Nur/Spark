@@ -239,16 +239,16 @@ const Student = ({ params }) => {
             )}
             {student.data?.result && (
               <div className="flex w-full justify-evenly border-t-2 border-base-content mt-5 mb-0 py-5 flex-wrap gap-2">
-                <button className="btn btn-neutral">
-                  SGPA:
+                <button className="btn btn-success">
+                  SGPA:&nbsp;
                   {student.data?.result?.sgpa.toFixed(3)}
                 </button>
-                <button className="btn btn-neutral">
-                  YGPA
+                <button className="btn btn-success">
+                  YGPA:&nbsp;
                   {student.data?.ygpa}
                 </button>
-                <button className="btn btn-neutral">
-                  CGPA{student.data?.cgpa}
+                <button className="btn btn-success">
+                  CGPA:&nbsp;{student.data?.cgpa}
                 </button>
               </div>
             )}

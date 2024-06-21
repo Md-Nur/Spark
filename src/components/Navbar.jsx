@@ -4,6 +4,8 @@ import Link from "next/link";
 import { MdMenu } from "react-icons/md";
 import LogoutBtn from "./LogoutBtn";
 import Image from "next/image";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 const NavRoutes = () => {
   const { userAuth } = useUserAuth();
@@ -35,11 +37,20 @@ const NavRoutes = () => {
 
 const Navbar = () => {
   const { userAuth } = useUserAuth();
-  // const {userAuth} = useContext(UserAuth)
-  // console.log(useUserAuth);
+
+  const [theme, setTheme] = useState(null);
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme && !theme) setTheme(localTheme);
+    else if (!localTheme && !theme) setTheme("corporate");
+    else if (theme) localStorage.setItem("theme", theme);
+
+    const html = document.querySelector("html");
+    html.attributes["data-theme"].value = theme;
+  }, [theme]);
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-300 sticky top-0 z-10">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,6 +73,16 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        <label className="flex cursor-pointer gap-2 items-center mx-3">
+          <FaSun />
+          <input
+            type="checkbox"
+            className="toggle"
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            onChange={(e) => setTheme(e.target.checked ? "dark" : "corporate")}
+          />
+          <FaMoon />
+        </label>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}

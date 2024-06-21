@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" data-theme="corporate">
+      <body className={inter.className + " bg-base-300 text-base-content"}>
         <GlobalProvider>
           <Navbar />
           {children}

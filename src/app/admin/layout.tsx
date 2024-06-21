@@ -38,7 +38,7 @@ export default function RootLayout({
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-auto min-h-full bg-base-300 text-base-content">
+        <ul className="menu p-4 w-auto min-h-full bg-base-200 text-base-content justify-center">
           {/* Sidebar content here */}
           <li className="my-2">
             <Link className="btn btn-neutral btn-sm" href="/admin">

@@ -41,13 +41,13 @@ const Results = () => {
   console.log(result.data);
 
   return (
-    <section className="flex flex-col items-center gap-5 min-h-screen p-2 w-full">
+    <section className="flex flex-col items-center gap-5 min-h-screen p-2 w-full bg-base-100">
       <h1 className="text-4xl font-bold my-5">Results</h1>
       <div className="flex flex-wrap gap-3 justify-center items-center w-full">
         <input
           className="input input-bordered w-44"
           type="text"
-          placeholder="Search By Name"
+          placeholder="Search By Name or Home-Town"
           onChange={(e) => setSearchName(e.target.value)}
         />
         <select
@@ -84,6 +84,7 @@ const Results = () => {
           }
         >
           <option disabled>Filter</option>
+          <option value="">All</option>
           <option value="pass true">Pass</option>
           <option value="pass false">Fail</option>
           <option value="session 22-23">Session 22-23</option>

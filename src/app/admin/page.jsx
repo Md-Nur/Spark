@@ -12,13 +12,15 @@ const Admin = () => {
   const users = useQuery({
     queryKey: ["users", searchName],
     queryFn: async () => {
-      const response = await axios.get(`/api/user?search=${searchName}`);
+      const response = await axios.get(
+        `/api/user?search=${searchName}`
+      );
       return response.data;
     },
   });
 
   return (
-    <section className="w-full">
+    <section className="w-full bg-base-100">
       <h1 className="text-center text-4xl font-extrabold my-10">
         Wellcome to Admin Panel
       </h1>
@@ -27,7 +29,7 @@ const Admin = () => {
         <input
           className="input input-bordered w-44"
           type="text"
-          placeholder="Search By Name"
+          placeholder="Search"
           onChange={(e) => setSearchName(e.target.value)}
         />
       </div>

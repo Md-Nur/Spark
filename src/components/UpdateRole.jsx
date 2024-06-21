@@ -21,12 +21,14 @@ const UpdateRole = ({ userInfo, refetch }) => {
     <>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
-        className="btn btn-sm btn-info"
+        className={`btn btn-sm ${
+          userInfo.role === "Admin" ? "btn-error" : "btn-info"
+        }`}
         onClick={() =>
           document.getElementById(`update_role_${userInfo._id}`).showModal()
         }
       >
-        {userInfo.role === "User" ? "Make Admin" : "Make User"}
+        {userInfo.role === "User" ? "Make Admin" : "Remove Admin"}
       </button>
       <dialog id={`update_role_${userInfo._id}`} className="modal">
         <div className="modal-box">
