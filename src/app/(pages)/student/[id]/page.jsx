@@ -13,6 +13,7 @@ import {
   FaTelegram,
   FaWhatsapp,
 } from "react-icons/fa";
+import Loading from "@/components/Loading"
 
 const Student = ({ params }) => {
   const { userAuth } = useUserAuth();
@@ -27,6 +28,8 @@ const Student = ({ params }) => {
       return response.data;
     },
   });
+
+  if(student.isLoading) return <Loading />;
 
   return (
     <div className="hero min-h-screen bg-base-200 w-full">
