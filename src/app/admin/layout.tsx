@@ -38,16 +38,16 @@ export default function RootLayout({
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-auto min-h-full bg-neutral text-neutral-content justify-center">
+        <ul className="menu p-4 w-auto min-h-full bg-base-200 text-neutral-content justify-center">
           {/* Sidebar content here */}
           <li className="my-2">
-            <Link className="btn btn-outline btn-sm" href="/admin">
+            <Link className="btn btn-outline btn-neutral" href="/admin">
               Manage User
             </Link>
           </li>
 
           <li className="my-2">
-            <Link className="btn btn-outline btn-sm" href="/admin/add-sub">
+            <Link className="btn btn-outline btn-neutral" href="/admin/add-sub">
               Add Subject
             </Link>
           </li>

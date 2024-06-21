@@ -70,7 +70,7 @@ const AddSub = () => {
       title="Add subject"
       description="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
     >
-      <form className="card-body gap-7" onSubmit={handleSubmit}>
+      <form className="card-body gap-7 bg-base-200" onSubmit={handleSubmit}>
         <div className="form-control">
           <select
             className="select select-bordered"

@@ -69,7 +69,7 @@ const UpdateUser = ({ params }) => {
           `}
         imgUrl={user.data?.imgUrl}
       >
-        <form className="card-body w-full p-2 md:p-7" onSubmit={handleSubmit(onSubmit)}>
+        <form className="card-body bg-base-200 w-full p-2 md:p-7" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
             <input
               type="text"
