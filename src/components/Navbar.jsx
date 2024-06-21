@@ -6,6 +6,7 @@ import LogoutBtn from "./LogoutBtn";
 import Image from "next/image";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 const NavRoutes = () => {
   const { userAuth } = useUserAuth();
@@ -36,11 +37,12 @@ const NavRoutes = () => {
 };
 
 const Navbar = () => {
-  const { userAuth } = useUserAuth();
+  const { userAuth, loading } = useUserAuth();
 
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
+
     if (localTheme && !theme) setTheme(localTheme);
     else if (!localTheme && !theme) setTheme("corporate");
     else if (theme) localStorage.setItem("theme", theme);
@@ -48,6 +50,8 @@ const Navbar = () => {
     const html = document.querySelector("html");
     html.attributes["data-theme"].value = theme;
   }, [theme]);
+
+  if (!theme || loading) return <Loading />;
 
   return (
     <div className="navbar bg-base-300 sticky top-0 z-10">
@@ -78,7 +82,7 @@ const Navbar = () => {
           <input
             type="checkbox"
             className="toggle"
-            defaultChecked={localStorage.getItem("theme") === "dark"}
+            defaultChecked={theme === "dark"}
             onChange={(e) => setTheme(e.target.checked ? "dark" : "corporate")}
           />
           <FaMoon />

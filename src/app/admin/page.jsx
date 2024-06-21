@@ -12,9 +12,7 @@ const Admin = () => {
   const users = useQuery({
     queryKey: ["users", searchName],
     queryFn: async () => {
-      const response = await axios.get(
-        `/api/user?search=${searchName}`
-      );
+      const response = await axios.get(`/api/user?search=${searchName}`);
       return response.data;
     },
   });
@@ -50,16 +48,19 @@ const Admin = () => {
             {users.isLoading && (
               <tr>
                 <td>
-                  <span className="loading loading-infinity loading-sm"></span>
+                  <span className="loading loading-infinity loading-lg"></span>
                 </td>
                 <td>
-                  <span className="loading loading-infinity loading-sm"></span>
+                  <span className="loading loading-infinity loading-lg"></span>
                 </td>
                 <td>
-                  <span className="loading loading-infinity loading-sm"></span>
+                  <span className="loading loading-infinity loading-lg"></span>
                 </td>
                 <td>
-                  <span className="loading loading-infinity loading-sm"></span>
+                  <span className="loading loading-infinity loading-lg"></span>
+                </td>
+                <td>
+                  <span className="loading loading-infinity loading-lg"></span>
                 </td>
               </tr>
             )}
