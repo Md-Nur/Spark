@@ -66,7 +66,7 @@ const UpdateUser = ({ params }) => {
       <HeroForm
         title="Update Student Info"
         description={`
-          If any student did't provide real information like roll and registration number then he/she can't be logged in this website and can't be a able to access this website.
+          If you provide any wrong information, your profile will be deleted from the website.
           `}
         imgUrl={user.data?.imgUrl}
       >
@@ -87,7 +87,9 @@ const UpdateUser = ({ params }) => {
                 className="hidden"
                 {...register("imgFile")}
               />
-              <span className="text-lg uppercase text-neutral-content">Upload Profile Image</span>
+              <span className="text-lg uppercase text-neutral-content">
+                Upload Profile Image
+              </span>
             </label>
           </div>
 
