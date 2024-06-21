@@ -66,7 +66,7 @@ const UpdateUser = ({ params }) => {
       <HeroForm
         title="Update Student Info"
         description={`
-          If any student did't provide real information like roll and registration number then he/she can't be logged in this website and can't be a member of spark family
+          If any student did't provide real information like roll and registration number then he/she can't be logged in this website and can't be a able to access this website.
           `}
         imgUrl={user.data?.imgUrl}
       >

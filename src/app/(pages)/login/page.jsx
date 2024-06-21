@@ -28,10 +28,14 @@ const Login = () => {
   return (
     <HeroForm
       title="LogIn"
-      description="You have to enter your roll number and password to login this website. Your password is your registration number."
+      description="Dear SPARK-08 member,
+Please login with your student ID and Registration number to see / update profiles and results"
       imgUrl="https://i.ibb.co/SxBcL4B/IMG20240527193319.jpg"
     >
-      <form className="card-body w-full bg-base-200" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="card-body w-full bg-base-200"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="form-control">
           <label className="label">
             <span className="label-text">Roll</span>
