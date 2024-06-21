@@ -39,7 +39,8 @@ const NavRoutes = () => {
 const Navbar = () => {
   const { userAuth, loading } = useUserAuth();
 
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  const [theme, setTheme] = useState(null);
+
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
 
