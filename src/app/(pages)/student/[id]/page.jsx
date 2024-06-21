@@ -82,7 +82,7 @@ const Student = ({ params }) => {
             </table>
           </div>
 
-          <div className="flex border-t-2 border-base-content justify-between w-full">
+          <div className="flex border-t-2 border-base-content justify-center gap-2 w-full">
             {student.data?.facebook && (
               <a
                 href={student.data?.facebook}

@@ -82,13 +82,17 @@ export async function PUT(
   await dbConnect();
 
   const data = await req.json();
+
   const updatedUser = {
     ...data,
-    roll: parseInt(data.roll),
-    hallCode: Math.floor((Number(data.roll) / 100000) % 1000),
-    registrationNo: parseInt(data.registrationNo),
   };
-  // console.log(data, updatedUser);
+
+  if (data.roll && data.registrationNo) {
+    updatedUser.roll = parseInt(data.roll);
+    updatedUser.hallCode = Math.floor((Number(data.roll) / 100000) % 1000);
+    updatedUser.registrationNo = parseInt(data.registrationNo);
+  }
+
   const user = await UserModel.findByIdAndUpdate(params.id, updatedUser);
   return Response.json(user);
 }

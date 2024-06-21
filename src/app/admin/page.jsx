@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { hall } from "@/lib/utils";
 import Image from "next/image";
+import UpdateRole from "../../components/UpdateRole";
 
 const Admin = () => {
   const [searchName, setSearchName] = useState("");
@@ -39,7 +40,7 @@ const Admin = () => {
               <th>Name & Home</th>
               <th>Roll & Hall</th>
               <th>Session</th>
-              <th>Role</th>
+              <th>Change Role</th>
             </tr>
           </thead>
           <tbody>
@@ -99,9 +100,7 @@ const Admin = () => {
                 </td>
                 <td>{user.session}</td>
                 <th>
-                  <button className="btn btn-neutral btn-sm">
-                    {user.role}
-                  </button>
+                  <UpdateRole userInfo={user} refetch={users.refetch} />
                 </th>
               </tr>
             ))}

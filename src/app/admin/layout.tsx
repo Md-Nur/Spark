@@ -1,14 +1,16 @@
 "use client";
 import { useUserAuth } from "@/context/userAuth";
 import Link from "next/link";
+import Loading from "@/components/Loading";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { userAuth }: any = useUserAuth();
-  if (userAuth?.role !== "Admin") {
+  const { userAuth, loading }: any = useUserAuth();
+  if (loading) return <Loading />;
+  else if (userAuth?.role !== "Admin") {
     return (
       <div className="flex items-center justify-center h-screen">
         <h1 className="text-2xl font-bold text-center">
