@@ -20,7 +20,7 @@ const Admin = () => {
   });
 
   return (
-    <section className="w-full bg-base-100">
+    <section className="w-full bg-base-100 min-h-screen">
       <h1 className="text-center text-4xl font-extrabold my-10">
         Wellcome to Admin Panel
       </h1>

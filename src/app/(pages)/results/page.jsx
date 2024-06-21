@@ -45,7 +45,7 @@ const Results = () => {
       <h1 className="text-4xl font-bold my-5">Results</h1>
       <div className="flex flex-wrap gap-3 justify-center items-center w-full">
         <input
-          className="input input-bordered w-44"
+          className="input input-bordered w-72"
           type="text"
           placeholder="Search By Name or Home-Town"
           onChange={(e) => setSearchName(e.target.value)}
