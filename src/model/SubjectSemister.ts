@@ -1,24 +1,32 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export interface SubjectSemister extends Document {
+export interface SubjectSemester extends Document {
   year: number;
-  semister: string;
-  isNew: boolean;
+  semester: string;
+  isNewer: boolean;
   subjects: {
     name: string;
+    teacher: {
+      secA: string;
+      secB: string;
+    };
     code: string;
     credit: number;
     type: string;
   }[];
 }
 
-const SubjectSemisterSchema = new Schema({
+const SubjectSemesterSchema = new Schema({
   year: { type: Number, enum: { values: [1, 2, 3, 4] } },
-  semister: { type: String, enum: { values: ["Even", "Odd"] } },
-  isNew: { type: Boolean, required: true },
+  semester: { type: String, enum: { values: ["Even", "Odd"] } },
+  isNewer: { type: Boolean, required: true },
   subjects: [
     {
       name: { type: String, required: true },
+      teacher: {
+        secA: { type: String },
+        secB: { type: String },
+      },
       code: { type: String, required: true },
       credit: { type: Number, required: true },
       type: {
@@ -29,8 +37,8 @@ const SubjectSemisterSchema = new Schema({
   ],
 });
 
-const SubjectSemisterModel =
-  (mongoose.models.SubjectSemister as mongoose.Model<SubjectSemister>) ||
-  mongoose.model<SubjectSemister>("SubjectSemister", SubjectSemisterSchema);
+const SubjectSemesterModel =
+  (mongoose.models.SubjectSemester as mongoose.Model<SubjectSemester>) ||
+  mongoose.model<SubjectSemester>("SubjectSemester", SubjectSemesterSchema);
 
-export default SubjectSemisterModel;
+export default SubjectSemesterModel;

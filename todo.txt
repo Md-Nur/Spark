@@ -1,6 +1,6 @@
 / 1. user detals info task
 / 2. user update task
-* 3. result update task
-* 4. blog, event and tour 
-* 5. home page: teacher section, cr section, admin profile section 
-* 6. add / update result
+* 3. blog, event and tour 
+* 4. home page: teacher section, cr section, admin profile section 
+* 5. result update task
+* 6. add  result

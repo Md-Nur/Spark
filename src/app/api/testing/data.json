@@ -1,0 +1,144 @@
+[
+  {
+    "year": { "$numberInt": "1" },
+    "semister": "Odd",
+    "subjects": [
+      {
+        "name": "Electrical Circuit - I",
+        "code": "EEE 1111",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "666207933e14787348f7e6c2" }
+      },
+      {
+        "name": "Electrical Circuit - I Sessional",
+        "code": "EEE 1112",
+        "credit": { "$numberDouble": "1.5" },
+        "type": "Lab",
+        "_id": { "$oid": "666207933e14787348f7e6c3" }
+      },
+      {
+        "name": "Computer Programming",
+        "code": "CSE 1151",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "666207933e14787348f7e6c4" }
+      },
+      {
+        "name": "Computer Programming Seassional",
+        "code": "CSE 1152",
+        "credit": { "$numberDouble": "1.5" },
+        "type": "Lab",
+        "_id": { "$oid": "666207933e14787348f7e6c5" }
+      },
+      {
+        "name": "Engineering Drawing",
+        "code": "CE 1152",
+        "credit": { "$numberDouble": "1.5" },
+        "type": "Lab",
+        "_id": { "$oid": "666207933e14787348f7e6c6" }
+      },
+      {
+        "name": "EMO",
+        "code": "PHY 1121",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "666207933e14787348f7e6c7" }
+      },
+      {
+        "name": "Physics Seassional",
+        "code": "PHY 1122",
+        "credit": { "$numberDouble": "1.5" },
+        "type": "Lab",
+        "_id": { "$oid": "666207933e14787348f7e6c8" }
+      },
+      {
+        "name": "Mathematics",
+        "code": "MATH 1131",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "666207933e14787348f7e6c9" }
+      },
+      {
+        "name": "English",
+        "code": "ENG 1111",
+        "credit": { "$numberInt": "2" },
+        "type": "Theory",
+        "_id": { "$oid": "666207933e14787348f7e6ca" }
+      }
+    ],
+    "__v": { "$numberInt": "0" },
+    "isNewer": false
+  },
+  {
+    "year": { "$numberInt": "1" },
+    "semister": "Odd",
+    "subjects": [
+      {
+        "name": "Electrical Circuit - I",
+        "code": "EEE 1111",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "66620d593e14787348f7e75f" }
+      },
+      {
+        "name": "Electrical Circuit I Seassional",
+        "code": "EEE 1112",
+        "credit": { "$numberDouble": "1.5" },
+        "type": "Lab",
+        "_id": { "$oid": "66620d593e14787348f7e760" }
+      },
+      {
+        "name": "Computer Programming",
+        "code": "CSE 1151",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "66620d593e14787348f7e761" }
+      },
+      {
+        "name": "Computer Programming Seassional",
+        "code": "CSE 1152",
+        "credit": { "$numberDouble": "1.5" },
+        "type": "Lab",
+        "_id": { "$oid": "66620d593e14787348f7e762" }
+      },
+      {
+        "name": "Engineering Drawing",
+        "code": "CE 1152",
+        "credit": { "$numberInt": "1" },
+        "type": "Lab",
+        "_id": { "$oid": "66620d593e14787348f7e763" }
+      },
+      {
+        "name": "EMO",
+        "code": "PHY 1121",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "66620d593e14787348f7e764" }
+      },
+      {
+        "name": "Physics Sessional",
+        "code": "PHY 1122",
+        "credit": { "$numberInt": "1" },
+        "type": "Lab",
+        "_id": { "$oid": "66620d593e14787348f7e765" }
+      },
+      {
+        "name": "Mathematics",
+        "code": "MATH 1131",
+        "credit": { "$numberInt": "3" },
+        "type": "Theory",
+        "_id": { "$oid": "66620d593e14787348f7e766" }
+      },
+      {
+        "name": "English",
+        "code": "ENG 1111",
+        "credit": { "$numberInt": "2" },
+        "type": "Theory",
+        "_id": { "$oid": "66620d593e14787348f7e767" }
+      }
+    ],
+    "__v": { "$numberInt": "0" },
+    "isNewer": true
+  }
+]

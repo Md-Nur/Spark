@@ -3,7 +3,7 @@ const SingleSub = ({ subject, setSubject, i }) => {
     <div className="form-control gap-1">
       <input
         type="text"
-        placeholder="Name"
+        placeholder="Course Title"
         className="input input-bordered"
         required
         onChange={(e) => {
@@ -14,6 +14,52 @@ const SingleSub = ({ subject, setSubject, i }) => {
                 return {
                   ...sub,
                   name: e.target.value,
+                };
+              }
+              return sub;
+            }),
+          });
+        }}
+      />
+      <input
+        type="text"
+        placeholder="Teacher Name Section A"
+        className="input input-bordered"
+        required
+        onChange={(e) => {
+          setSubject({
+            ...subject,
+            subjects: subject.subjects.map((sub, index) => {
+              if (index === i) {
+                return {
+                  ...sub,
+                  teacher: {
+                    ...sub.teacher,
+                    secA: e.target.value,
+                  },
+                };
+              }
+              return sub;
+            }),
+          });
+        }}
+      />
+      <input
+        type="text"
+        placeholder="Teacher Name Section B"
+        className="input input-bordered"
+        required
+        onChange={(e) => {
+          setSubject({
+            ...subject,
+            subjects: subject.subjects.map((sub, index) => {
+              if (index === i) {
+                return {
+                  ...sub,
+                  teacher: {
+                    ...sub.teacher,
+                    secB: e.target.value,
+                  },
                 };
               }
               return sub;

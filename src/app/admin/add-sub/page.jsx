@@ -9,11 +9,15 @@ import { toast } from "react-toastify";
 const AddSub = () => {
   const [subject, setSubject] = useState({
     year: 0,
-    semister: "",
-    isNew: true,
+    semester: "",
+    isNewer: true,
     subjects: [
       {
         name: "",
+        teacher: {
+          secA: "",
+          secB: "",
+        },
         code: "",
         credit: 0,
         type: "",
@@ -28,6 +32,10 @@ const AddSub = () => {
         ...subject.subjects,
         {
           name: "",
+          teacher: {
+            secA: "",
+            secB: "",
+          },
           code: "",
           credit: 0,
           type: "",
@@ -38,21 +46,24 @@ const AddSub = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(subject);
 
     axios
       .post("/api/subject-semister", subject)
       .then((res) => {
         toast.success("Subject added successfully");
-        console.log(res.data);
+        // console.log(res.data);
       })
       .then(() => {
         setSubject({
           year: 0,
-          semister: "",
+          semester: "",
           subjects: [
             {
               name: "",
+              teacher: {
+                secA: "",
+                secB: "",
+              },
               code: "",
               credit: 0,
               type: "",
@@ -78,7 +89,7 @@ const AddSub = () => {
             onChange={(e) => {
               setSubject({
                 ...subject,
-                isNew: e.target.value,
+                isNewer: e.target.value,
               });
             }}
           >
@@ -112,7 +123,7 @@ const AddSub = () => {
             onChange={(e) => {
               setSubject({
                 ...subject,
-                semister: e.target.value,
+                semester: e.target.value,
               });
             }}
           >
