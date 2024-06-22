@@ -27,7 +27,7 @@ const CR = () => {
               Representatives (CRs), Muhammad Nur from Dhaka and Tousif Iqti
               from Rangpur. These two dynamos are like a well-wired circuit –
               perfectly in sync and always reliable. You can count on them to
-              keep the current flowing, whether it's delivering important
+              keep the current flowing, whether it&apos;s delivering important
               announcements or sparking solutions to any academic hurdles. Their
               friendship ensures a positive charge runs through the batch, and
               their commitment to duty is unwavering. So, if you have a question

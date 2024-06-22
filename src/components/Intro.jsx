@@ -27,7 +27,7 @@ const Intro = () => {
             innovators.
           </p>
           <p className="text-lg text-justify">
-            This website serves as a hub for our batch, Spark. Here you'll find
+            This website serves as a hub for our batch, Spark. Here you&apos;ll find
             resources, information, and a platform to connect with your fellow
             classmates.
           </p>
