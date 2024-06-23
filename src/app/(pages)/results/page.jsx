@@ -42,7 +42,9 @@ const Results = () => {
 
   return (
     <section className="flex flex-col items-center gap-5 min-h-screen p-2 w-full bg-base-100">
-      <h1 className="text-4xl font-bold my-5">Results</h1>
+      <h1 className="text-4xl font-bold my-5">
+        {userAuth ? "Results" : "Student Info"}
+      </h1>
       <div className="flex flex-wrap gap-3 justify-center items-center w-full">
         <input
           className="input input-bordered w-72"

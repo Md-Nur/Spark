@@ -18,22 +18,11 @@ const NavRoutes = () => {
       <li>
         <Link href="/results">{userAuth ? "Results" : "Student Info"}</Link>
       </li>
-      {userAuth ? (
-        <li>
-          <LogoutBtn />
-        </li>
-      ) : (
-        <li>
-          <Link href="/login">Login</Link>
-        </li>
-      )}
-      {userAuth && userAuth.role === "Admin" && (
-        <li>
-          <Link href="/admin">Admin</Link>
-        </li>
-      )}
       <li>
         <Link href="/academics">Academics</Link>
+      </li>
+      <li>
+        <Link href="/study-materials">Study Materials</Link>
       </li>
     </>
   );
@@ -123,6 +112,9 @@ const Navbar = () => {
                   >
                     Profile
                   </Link>
+                </li>
+                <li>
+                  <Link href="/add-sm">Add Study Materials</Link>
                 </li>
                 {userAuth?.role === "Admin" && (
                   <li>

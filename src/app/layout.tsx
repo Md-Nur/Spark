@@ -21,10 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="emerald">
-      <body className={inter.className + " bg-base-300 text-base-content"}>
+      <body className={inter.className}>
         <GlobalProvider>
           <Navbar />
-          {children}
+          <main className="min-h-[calc(100vh-320px)] flex justify-center items-center">
+            {children}
+          </main>
           <ToastContainer
             position="top-right"
             autoClose={5000}

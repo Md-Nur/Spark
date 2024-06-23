@@ -12,6 +12,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "./style.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const Admin = () => {
   const admins = useQuery({
@@ -54,7 +55,10 @@ const Admin = () => {
         >
           {admins.data.map((admin) => (
             <SwiperSlide key={admin._id}>
-              <div className="card card-compact w-full bg-base-100 shadow-xl">
+              <Link
+                href={`/student/${admin._id}`}
+                className="card card-compact w-full bg-base-100 shadow-xl"
+              >
                 <figure>
                   <Image
                     src={admin.imgUrl}
@@ -70,7 +74,7 @@ const Admin = () => {
                   <p>Hall: {hall[admin.hallCode]}</p>
                   <strong>Spark Web Admin</strong>
                 </div>
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

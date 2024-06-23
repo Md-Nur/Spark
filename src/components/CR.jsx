@@ -3,7 +3,9 @@ import Image from "next/image";
 const CR = () => {
   return (
     <section className="w-full my-10">
-      <h1 className="text-4xl text-center font-bold my-20">Class Representative</h1>
+      <h1 className="text-4xl text-center font-bold my-20">
+        Class Representative
+      </h1>
       <div
         className="hero bg-fixed bg-cover bg-center bg-no-repeat"
         style={{
@@ -25,15 +27,15 @@ const CR = () => {
             </h1>
             <p className="py-6">
               Our batch is fueled by the dedication of our very own Class
-              Representatives (CRs), Muhammad Nur from Dhaka and Tousif Iqti
-              from Rangpur. These two dynamos are like a well-wired circuit –
-              perfectly in sync and always reliable. You can count on them to
-              keep the current flowing, whether it&apos;s delivering important
-              announcements or sparking solutions to any academic hurdles. Their
-              friendship ensures a positive charge runs through the batch, and
-              their commitment to duty is unwavering. So, if you have a question
-              or need a classmate connection, look no further than our trusty CR
-              duo!
+              Representatives (CRs),<strong>Tousif Iqti</strong> from Rangpur
+              and <strong>Muhammad Nur</strong> from Dhaka. These two dynamos
+              are like a well-wired circuit – perfectly in sync and always
+              reliable. You can count on them to keep the current flowing,
+              whether it&apos;s delivering important announcements or sparking
+              solutions to any academic hurdles. Their friendship ensures a
+              positive charge runs through the batch, and their commitment to
+              duty is unwavering. So, if you have a question or need a classmate
+              connection, look no further than our trusty CR duo!
             </p>
           </div>
         </div>

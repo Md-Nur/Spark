@@ -51,6 +51,11 @@ export default function RootLayout({
               Add Subject
             </Link>
           </li>
+          <li className="my-2">
+            <Link className="btn btn-outline btn-neutral" href="/admin/add-sm">
+              Add Study Material
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

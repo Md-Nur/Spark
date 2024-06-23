@@ -1,4 +1,5 @@
 import { FaFacebook } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
 
 const Footer = () => {
   return (
@@ -18,6 +19,9 @@ const Footer = () => {
             target="_blank"
           >
             <FaFacebook className="text-4xl" />
+          </a>
+          <a href="mailto:spark08eee.ru@gmail.com" target="_blank">
+            <MdMail className="text-4xl" />
           </a>
         </div>
       </nav>
