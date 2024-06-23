@@ -2,9 +2,10 @@ import crPic from "@/pic/cr.jpg";
 import Image from "next/image";
 const CR = () => {
   return (
-    <section className="w-full">
+    <section className="w-full my-10">
+      <h1 className="text-4xl text-center font-bold my-20">Class Representative</h1>
       <div
-        className="hero min-h-screen bg-fixed bg-cover bg-center bg-no-repeat"
+        className="hero bg-fixed bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url(https://i.ibb.co/58zCFPr/trophos.jpg)",
         }}

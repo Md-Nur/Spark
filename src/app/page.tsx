@@ -1,5 +1,4 @@
 import Hero from "../components/Hero";
-import CourseDetails from "../components/CourseDetails";
 import Intro from "../components/Intro";
 import CR from "../components/CR";
 import Admin from "../components/Admin";
@@ -10,7 +9,7 @@ export default function Home() {
       <Hero />
       <Intro />
       <CR />
-      <CourseDetails />
+      {/* <CourseDetails /> */}
       <Admin />
     </section>
   );

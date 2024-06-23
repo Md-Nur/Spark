@@ -14,10 +14,8 @@ export async function GET(request: NextRequest) {
     try {
       const data = await SubjectSemesterModel.find({
         isNewer: true,
-      })
-        .sort({ _id: -1 })
-        .limit(1);
-      return Response.json(data[0]);
+      }).sort({ _id: -1 });
+      return Response.json(data);
     } catch (error) {
       console.error(error);
       return Response.error();

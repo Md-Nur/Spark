@@ -32,6 +32,9 @@ const NavRoutes = () => {
           <Link href="/admin">Admin</Link>
         </li>
       )}
+      <li>
+        <Link href="/academics">Academics</Link>
+      </li>
     </>
   );
 };

@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalProvider from "@/provider/GlobalProvider";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
             theme="colored"
             transition={Bounce}
           />
+          <Footer />
         </GlobalProvider>
       </body>
     </html>
