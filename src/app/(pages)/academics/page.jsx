@@ -24,7 +24,7 @@ const CourseDetails = () => {
   return (
     <section className="w-full my-20">
       {courses.data.map((course) => (
-        <div>
+        <div key={course._id}>
           <h1 className="text-4xl font-bold my-10 text-center">
             {year[course?.year]} {course.semester} Semester Course Details
           </h1>
