@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <GlobalProvider>
           <Navbar />
-          <main className="min-h-[calc(100vh-320px)] flex justify-center items-center">
+          <main className="min-h-[calc(100vh-348px)] flex justify-center items-center">
             {children}
           </main>
           <ToastContainer

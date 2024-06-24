@@ -24,6 +24,12 @@ const NavRoutes = () => {
       <li>
         <Link href="/study-materials">Study Materials</Link>
       </li>
+      <li>
+        <Link href="/blog">Blogs</Link>
+      </li>
+      <li>
+        <Link href="/events">Events</Link>
+      </li>
     </>
   );
 };
@@ -44,7 +50,12 @@ const Navbar = () => {
     html.attributes["data-theme"].value = theme;
   }, [theme]);
 
-  if (!theme || loading) return <Loading />;
+  if (!theme || loading)
+    return (
+      <div className="h-[67px]">
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="navbar bg-base-300 sticky top-0 z-10">
@@ -115,6 +126,9 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link href="/add-sm">Add Study Materials</Link>
+                </li>
+                <li>
+                  <Link href="/add-content">Add Blogs/Event</Link>
                 </li>
                 {userAuth?.role === "Admin" && (
                   <li>

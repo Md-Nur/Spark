@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.45.1",
+    "@tinymce/tinymce-react": "^5.1.1",
     "@types/jsonwebtoken": "^9.0.6",
     "axios": "^1.7.2",
     "express": "^4.19.2",
