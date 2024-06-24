@@ -69,6 +69,6 @@ export async function GET(req: Request) {
 
   const contents = await ContentModel.aggregate(pipeline);
 
-  console.log(contents);
+  // console.log(contents);
   return Response.json(contents);
 }
