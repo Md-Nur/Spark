@@ -37,7 +37,7 @@ const ManageContent = () => {
           </thead>
           <tbody>
             {allContent.data.map((content, i) => (
-              <tr>
+              <tr key={content._id}>
                 <th>{i + 1}</th>
                 <td>
                   <div className="flex items-center gap-3">
