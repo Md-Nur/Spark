@@ -7,6 +7,7 @@ import { useUserAuth } from "@/context/userAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Content = ({ postData }) => {
   const router = useRouter();
@@ -95,7 +96,9 @@ const Content = ({ postData }) => {
         </div>
         <div className="form-control">
           {(preview || postData?.thumbnail) && (
-            <img
+            <Image
+              height={300}
+              width={500}
               src={preview || postData?.thumbnail}
               alt="Image Preview"
               className="mx-auto max-h-96 object-cover rounded-md my-3"
