@@ -5,7 +5,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import Head from "next/head";
+import Metadata from "@/components/Metadata";
 
 const Login = () => {
   const router = useRouter();
@@ -28,14 +28,10 @@ const Login = () => {
   };
   return (
     <>
-      <Head>
-        <title>Login - Spark</title>
-        <meta
-          name="description"
-          content="Dear SPARK-08 member, Please login with your student ID and Registration number to see / update profiles and results"
-          key="desc"
-        />
-      </Head>
+      <Metadata
+        seoTitle="Login - Spark"
+        seoDescription="Dear SPARK-08 member, Please login with your student ID and Registration number to see / update profiles and results"
+      />
       <HeroForm
         title="LogIn"
         description="Dear SPARK-08 member,

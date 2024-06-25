@@ -2,6 +2,7 @@ import Hero from "../components/Hero";
 import Intro from "../components/Intro";
 import CR from "../components/CR";
 import Admin from "../components/Admin";
+import LatestContent from "../components/LatestContent";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <Intro />
       <CR />
+      <LatestContent />
       <Admin />
     </section>
   );

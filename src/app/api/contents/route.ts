@@ -13,6 +13,7 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const type = url.searchParams.get("type");
   const admin = url.searchParams.get("admin");
+  const limit = url.searchParams.get("limit");
 
   let pipeline: any[] = [];
 
@@ -26,6 +27,11 @@ export async function GET(req: Request) {
     } else {
       pipeline.push({ $match: { type: { $ne: "blog" } } });
     }
+  }
+  if (limit) {
+    pipeline.push({
+      $limit: parseInt(limit),
+    });
   }
 
   pipeline = [

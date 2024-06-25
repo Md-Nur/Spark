@@ -2,16 +2,19 @@ import Link from "next/link";
 import hoodie from "@/pic/hoodie.jpg";
 import Image from "next/image";
 
-const ShowContent = ({ contents }) => {
+const ShowContent = ({ contents, title }) => {
   if (!contents.length) return <p>No content available</p>;
   return (
     <section className="w-full">
       <h1 className="text-4xl font-bold text-center my-10">
-        {contents[0]?.types === "blog" ? "Blogs" : "Events"}
+        {title || "Blogs"}
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-7xl mx-auto my-10 gap-5">
+      <div className="flex flex-wrap justify-center max-w-7xl mx-auto my-10 gap-5  w-full">
         {contents?.map((content) => (
-          <div key={content._id} className="card bg-base-100 shadow-xl">
+          <div
+            key={content._id}
+            className="card bg-base-100 shadow-xl w-full sm:w-80 md:w-96"
+          >
             <figure>
               <Image
                 src={content.thumbnail || hoodie}
