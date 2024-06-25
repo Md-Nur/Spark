@@ -5,10 +5,12 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import Loading from "@/components/Loading";
+import { usePathname } from "next/navigation";
 
 const CR = () => {
+  const pathname = usePathname();
   const crs = useQuery({
-    queryKey: ["crs"],
+    queryKey: ["crs", pathname],
     queryFn: async () => {
       const response = await axios.get(`/api/cr`);
       return response.data;

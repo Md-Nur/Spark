@@ -13,10 +13,12 @@ import "swiper/css/pagination";
 import "./style.css";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Admin = () => {
+  const pathname = usePathname();
   const admins = useQuery({
-    queryKey: ["admins"],
+    queryKey: ["admins", pathname],
     queryFn: async () => {
       const response = await axios.get("/api/admins");
       return response.data;
