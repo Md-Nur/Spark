@@ -53,11 +53,6 @@ export default function RootLayout({
             </Link>
           </li>
           <li className="my-2">
-            <Link className="btn btn-outline btn-neutral" href="/admin/add-sm">
-              Add Study Material
-            </Link>
-          </li>
-          <li className="my-2">
             <Link
               className="btn btn-outline btn-neutral"
               href="/admin/manage-content"

@@ -18,17 +18,17 @@ const ManageContent = () => {
   if (allContent.isLoading) return <Loading />;
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-4xl font-bold text-center my-10">Manage Content</h1>
 
-      <div className="overflow-x-auto">
-        <table className="table">
+      <div className="overflow-x-auto w-full">
+        <table className="table table-xs sm:table-sm md:table-md lg:table-lg">
           {/* head */}
           <thead>
             <tr>
               <th>Sl</th>
               <th>Thumbnail</th>
-              <th>Title</th>
+              <th>Title & Date</th>
               <th>Author</th>
               <th>View</th>
               <th>Approve</th>
@@ -54,8 +54,8 @@ const ManageContent = () => {
                 </td>
                 <td>
                   <div className="flex flex-col">
-                    <span className="text-lg font-bold">{content.title}</span>
-                    <span className="text-sm">
+                    <span className="font-bold">{content.title}</span>
+                    <span className="">
                       {content.createdAt.split("T")[0]}
                     </span>
                   </div>

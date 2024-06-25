@@ -96,9 +96,11 @@ export async function GET(req: Request) {
     pipeline.push({ $sort: sortStage });
   }
 
-  if (filter === "session" && fvalue) {
+  if ((filter === "session" || filter === "hallCode") && fvalue) {
     const filterStage: any = {};
-    filterStage["student.session"] = fvalue;
+    console.log(filter, fvalue);
+    filterStage[`student.${filter}`] =
+      filter === "hallCode" ? parseInt(fvalue) : fvalue;
     pipeline.push({ $match: filterStage });
   } else if (filter === "pass" && fvalue) {
     const filterStage: any = {};

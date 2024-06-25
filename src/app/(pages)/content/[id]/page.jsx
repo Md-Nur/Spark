@@ -43,8 +43,8 @@ const Content = ({ params }) => {
           content.data.title + " - " + content.data.tags.join(", ")
         }
       />
-      <section className="py-20">
-        <h1 className="text-4xl font-bold text-center my-10">
+      <section className="py-20 px-2">
+        <h1 className="text-xl md:text-4xl font-bold text-center my-10">
           {content.data.title}
         </h1>
         <div className="md:p-5 max-w-7xl mx-auto">
@@ -57,26 +57,36 @@ const Content = ({ params }) => {
               className="object-cover w-full max-h-[calc(100ch-350px)] rounded-lg"
             />
           </figure>
-          <div className="flex rounded-lg p-5 mt-5 bg-base-200 justify-between items-center">
+          <div className="flex rounded-lg p-5 mt-5 bg-base-200 justify-center md:justify-between items-center flex-wrap gap-3">
             <div className="flex items-center gap-2">
-              <Image
-                src={content.data.user?.imgUrl}
-                alt={content.data.user?.name}
-                width={50}
-                height={50}
-                className="rounded-full h-16 w-16 object-cover"
-              />
+              <Link href={`/student/${content.data.user._id}`}>
+                <Image
+                  src={content.data.user?.imgUrl}
+                  alt={content.data.user?.name}
+                  width={50}
+                  height={50}
+                  className="rounded-full h-16 w-16 object-cover"
+                />
+              </Link>
               <div>
-                <p className="font-semibold">{content.data.user.name}</p>
-                <p>{content.data.createdAt.split("T")[0]}</p>
+                <Link
+                  href={`/student/${content.data.user._id}`}
+                  className="font-semibold"
+                >
+                  {content.data.user.name}
+                </Link>
+                <p>Created At: {content.data.createdAt.split("T")[0]}</p>
+                <p>Last Update: {content.data.updatedAt.split("T")[0]}</p>
               </div>
             </div>
-            <div className="flex flex-col gap-2 items-center">
+            <div className="flex flex-col gap-2 items-center flex-wrap">
               <div className="badge badge-primary">
                 Type: {content.data.type}
               </div>
-              <div className="flex gap-3 items-center">
-                <span className="font-semibold badge-neutral badge">Tags: </span>
+              <div className="flex gap-3 items-center flex-wrap justify-center">
+                <span className="font-semibold badge-neutral badge">
+                  Tags:{" "}
+                </span>
                 {content.data.tags.map((tag) => (
                   <div key={tag} className="badge badge-secondary">
                     {tag}

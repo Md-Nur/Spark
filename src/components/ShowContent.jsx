@@ -9,11 +9,12 @@ const ShowContent = ({ contents, title }) => {
       <h1 className="text-4xl font-bold text-center my-10">
         {title || "Blogs"}
       </h1>
-      <div className="flex flex-wrap justify-center max-w-7xl mx-auto my-10 gap-5  w-full">
+      <div className="flex flex-wrap justify-center max-w-7xl mx-auto my-10 gap-5 px-2 w-full">
         {contents?.map((content) => (
-          <div
+          <Link
+            href={`/content/${content._id}`}
             key={content._id}
-            className="card bg-base-100 shadow-xl w-full sm:w-80 md:w-96"
+            className="card bg-base-300 shadow-xl w-full sm:w-80 md:w-96"
           >
             <figure>
               <Image
@@ -41,7 +42,7 @@ const ShowContent = ({ contents, title }) => {
                 </Link>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

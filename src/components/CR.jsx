@@ -1,18 +1,67 @@
-import crPic from "@/pic/cr.jpg";
+"use client";
+import { hall } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
+import Loading from "@/components/Loading";
+
 const CR = () => {
+  const crs = useQuery({
+    queryKey: ["crs"],
+    queryFn: async () => {
+      const response = await axios.get(`/api/cr`);
+      return response.data;
+    },
+  });
+  if (crs.isLoading) return <Loading />;
   return (
     <section className="w-full my-10">
       <h1 className="text-4xl text-center font-bold my-20">
         Class Representative
       </h1>
-      <div
+      <div className="flex flex-wrap gap-4 justify-evenly w-full">
+        {crs.data?.map((cr) => (
+          <Link
+            href={`/student/${cr._id}`}
+            key={cr._id}
+            className="card bg-base-300 w-full px-2 md:w-96 shadow-xl"
+          >
+            <figure>
+              <Image
+                src={cr.imgUrl}
+                alt={cr.name}
+                height={300}
+                width={300}
+                className="rounded-t-lg w-full h-72 object-cover object-center"
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">
+                {cr.name} <div className="badge badge-secondary">CR</div>
+              </h2>
+              <div className="card-actions justify-end">
+                <div className="badge badge-outline">{cr.homeTown}</div>
+                <div className="badge badge-outline">{hall[cr.hallCode]}</div>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default CR;
+
+{
+  /* <div
         className="hero bg-fixed bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url(https://i.ibb.co/58zCFPr/trophos.jpg)",
         }}
       >
-        {/* <div ></div> */}
+       
         <div className="hero-content flex-col md:flex-row-reverse justify-evenly">
           <Image
             src={crPic}
@@ -39,9 +88,5 @@ const CR = () => {
             </p>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
-
-export default CR;
+</div> */
+}

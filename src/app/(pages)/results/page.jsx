@@ -9,6 +9,7 @@ import { useUserAuth } from "@/context/userAuth";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Metadata from "@/components/Metadata";
+import { hall } from "@/lib/utils";
 
 const Results = () => {
   const { userAuth, loading } = useUserAuth();
@@ -50,7 +51,7 @@ const Results = () => {
         seoTitle={userAuth ? "Results" : "Student Info"}
         seoDescription="Results and student information of all the students of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh."
       />
-      <section className="flex flex-col items-center gap-5 min-h-screen p-2 w-full bg-base-100">
+      <section className="flex flex-col items-center gap-5 p-2 w-full bg-base-100">
         <h1 className="text-4xl font-bold my-5">
           {userAuth ? "Results" : "Student Info"}
         </h1>
@@ -59,7 +60,7 @@ const Results = () => {
             className="input input-bordered w-72"
             type="text"
             placeholder="Search By Name or Home-Town"
-            onChange={(e) => setSearchName(e.target.value)}
+            onBlur={(e) => setSearchName(e.target.value)}
           />
           <select
             defaultValue="Sorting"
@@ -86,7 +87,7 @@ const Results = () => {
           </select>
           <select
             defaultValue="Filter"
-            className="select select-bordered"
+            className="select select-bordered max-w-72"
             onChange={(e) =>
               setFilter({
                 name: e.target.value.split(" ")[0],
@@ -98,9 +99,18 @@ const Results = () => {
             <option value="">All</option>
             <option value="pass true">Pass</option>
             <option value="pass false">Fail</option>
-            <option value="session 22-23">Session 22-23</option>
-            <option value="session 21-22">Session 21-22</option>
-            <option value="session 20-21">Session 20-21</option>
+            <optgroup label="Hall" className="dropdown">
+              {Object.keys(hall).map((hallCode) => (
+                <option key={hallCode} value={`hallCode ${hallCode}`}>
+                  {hall[hallCode]}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Session">
+              <option value="session 22-23">22-23</option>
+              <option value="session 21-22">21-22</option>
+              <option value="session 20-21">20-21</option>
+            </optgroup>
           </select>
           <select
             defaultValue=""

@@ -33,12 +33,12 @@ const Intro = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-1 sm:px-5 md:px-7 lg:px-10 my-10 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:px-5 md:px-7 lg:px-10 my-10 w-full px-3">
         <div className="flex flex-col justify-center items-center w-full px-3">
           <h2 className="text-center text-2xl font-semibold my-5">
             Highlights of the EEE Department:
           </h2>
-          <ul className="list-disc text-lg text-justify">
+          <ul className="list-disc text-lg text-justify px-3">
             <li>
               <strong>Faculty of Engineering: </strong>
               Our department is part of the esteemed Faculty of Engineering at

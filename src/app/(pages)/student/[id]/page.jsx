@@ -50,7 +50,7 @@ const Student = ({ params }) => {
             alt={student.data?.name}
             className="w-72 h-72 rounded-lg shadow-2xl object-cover mx-auto md:mx-0"
           />
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto w-full">
             <table className="table table-xs md:table-sm">
               <tbody>
                 <tr>
@@ -87,7 +87,7 @@ const Student = ({ params }) => {
             </table>
           </div>
 
-          <div className="flex border-t-2 border-base-content justify-center gap-2 w-full">
+          <div className="flex border-t-2 border-base-content justify-center gap-1 sm:gap-2 w-full flex-wrap">
             {student.data?.facebook && (
               <a
                 href={student.data?.facebook}
@@ -135,7 +135,7 @@ const Student = ({ params }) => {
             {student.data?.whatsapp && (
               <div className="tooltip" data-tip={student.data.whatsapp}>
                 <a
-                  href={`https://wa.me/${student.data.whatsapp}`}
+                  href={`https://wa.me/+88${student.data.whatsapp}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-circle"
@@ -147,7 +147,7 @@ const Student = ({ params }) => {
             {student.data?.telegram && (
               <div className="tooltip" data-tip={student.data.telegram}>
                 <a
-                  href={`https://t.me/${student.data.telegram}`}
+                  href={`https://t.me/+88${student.data.telegram}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-circle"
@@ -170,7 +170,7 @@ const Student = ({ params }) => {
           </div>
         </div>
         {userAuth ? (
-          <div className="border-t-2 border-base-content md:border-t-0 w-full">
+          <div className="w-full">
             <h1 className="text-3xl font-bold mb-5 text-center md:text-left">
               RESULT
             </h1>
@@ -304,7 +304,8 @@ const Student = ({ params }) => {
         ) : (
           <div className="flex justify-center items-center w-full h-full">
             <span className="text-4xl font-bold max-w-md text-center leading-loose">
-              কী...... স্পর্কের মেম্বার না!!! রেজাল্ট দেখার অনুমতি নাই😜
+              {/* কী...... স্পর্কের মেম্বার না!!! রেজাল্ট দেখার অনুমতি নাই😜 */}
+              Please login to see results.
             </span>
           </div>
         )}
