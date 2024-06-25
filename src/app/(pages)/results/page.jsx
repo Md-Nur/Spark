@@ -163,10 +163,10 @@ const Results = () => {
                       <td>
                         <div className="flex items-center gap-3">
                           <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
+                            <div className="mask mask-squircle w-16 h-16">
                               <Image
-                                height={48}
-                                width={48}
+                                height={100}
+                                width={100}
                                 src={result.student.imgUrl}
                                 alt={result.student.name}
                               />
@@ -176,8 +176,11 @@ const Results = () => {
                             <div className="font-bold">
                               {result.student.name}
                             </div>
-                            <div className="text-sm opacity-50">
+                            <div className="text-sm opacity-80">
                               {result.student.homeTown}
+                            </div>
+                            <div className="text-sm opacity-60">
+                              {result.student.hallCode && hall[result.student.hallCode]}
                             </div>
                           </div>
                         </div>
