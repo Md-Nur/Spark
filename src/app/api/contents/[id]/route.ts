@@ -6,8 +6,37 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   await dbConnect();
-  const content = await ContentModel.findById(params.id);
-  return Response.json(content);
+  const content = await ContentModel.aggregate([
+    {
+      $addFields: {
+        userId: { $toObjectId: "$userId" },
+        id: { $toString: "$_id" },
+      },
+    },
+    {
+      $match: {
+        id: params.id,
+      },
+    },
+    {
+      $lookup: {
+        from: "users",
+        localField: "userId",
+        foreignField: "_id",
+        as: "user",
+      },
+    },
+    {
+      $unwind: "$user",
+    },
+    {
+      $project: {
+        "user.registrationNo": 0,
+        id: 0,
+      },
+    },
+  ]);
+  return Response.json(content[0]);
 }
 
 export async function PUT(

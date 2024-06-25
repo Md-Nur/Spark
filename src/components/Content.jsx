@@ -6,8 +6,10 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useUserAuth } from "@/context/userAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const Content = ({ postData }) => {
+  const router = useRouter();
   const { userAuth } = useUserAuth();
   const editorRef = useRef(null);
   const [image, setImage] = useState(null);
@@ -56,6 +58,7 @@ const Content = ({ postData }) => {
       try {
         await axios.put(`/api/contents/${postData._id}`, data);
         toast.dismiss();
+        router.push(`/content/${postData._id}`);
         toast.success("Post updated successfully");
       } catch (error) {
         toast.dismiss();
@@ -63,8 +66,9 @@ const Content = ({ postData }) => {
       }
     } else {
       try {
-        await axios.post("/api/contents", data);
+        const { data } = await axios.post("/api/contents", data);
         toast.dismiss();
+        router.push(`/content/${data._id}`);
         toast.success("Post added successfully");
       } catch (error) {
         toast.dismiss();

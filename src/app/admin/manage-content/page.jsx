@@ -31,7 +31,6 @@ const ManageContent = () => {
               <th>Title</th>
               <th>Author</th>
               <th>View</th>
-              <th>Delete</th>
               <th>Approve</th>
             </tr>
           </thead>
@@ -70,13 +69,6 @@ const ManageContent = () => {
                     View
                   </Link>
                 </td>
-                <td>
-                  <DeleteContentBtn
-                    id={content._id}
-                    refetch={allContent.refetch}
-                  />
-                </td>
-
                 <th>
                   <ContentApproveBtn
                     contentInfo={content}

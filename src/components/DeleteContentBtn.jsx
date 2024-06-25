@@ -1,11 +1,14 @@
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-const DeleteContent = ({ id, refetch }) => {
+const DeleteContent = ({ id, type }) => {
+  const router = useRouter();
   const handleDelete = async () => {
     // Add your delete logic
     try {
       await axios.delete(`/api/contents/${id}`);
+      router.push(`${type === "blog" ? "/blogs" : "/events"}`);
       toast.success("Study material deleted successfully");
       refetch();
     } catch (error) {
@@ -15,7 +18,7 @@ const DeleteContent = ({ id, refetch }) => {
   return (
     <>
       <button
-        className="btn btn-error btn-sm"
+        className="btn btn-error"
         onClick={() =>
           document.getElementById(`delete_content_${id}`).showModal()
         }

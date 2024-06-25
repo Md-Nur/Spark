@@ -3,9 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useUserAuth } from "@/context/userAuth";
 import Loading from "@/components/Loading";
+import "../style.css";
+import Image from "next/image";
+import Link from "next/link";
+import DeleteContentBtn from "@/components/DeleteContentBtn";
+import Head from "next/head";
 
 const Content = ({ params }) => {
-  const { userAuth } = useUserAuth();
+  const { userAuth, loading } = useUserAuth();
   const content = useQuery({
     queryKey: ["content", params.id],
     queryFn: async () => {
@@ -14,7 +19,7 @@ const Content = ({ params }) => {
     },
   });
 
-  if (content.isLoading) return <Loading />;
+  if (content.isLoading || loading) return <Loading />;
 
   if (
     content.isError ||
@@ -28,14 +33,67 @@ const Content = ({ params }) => {
       </div>
     );
 
+  if (!content.data) return <div>Post not found</div>;
+
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-center">{content.data.title}</h1>
-      <div
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: content.data.content }}
-      ></div>
-    </div>
+    <section className="py-20">
+      <Head>
+        <title>{content.data.title} - Spark</title>
+        <meta
+          name="description"
+          content={content.data.title + " - " + content.data.tags.join(", ")}
+          key="desc"
+        />
+      </Head>
+      <h1 className="text-4xl font-bold text-center my-10">
+        {content.data.title}
+      </h1>
+      <div className="md:p-5 max-w-7xl mx-auto">
+        <figure>
+          <Image
+            src={content.data.thumbnail}
+            alt={content.data.title}
+            width={800}
+            height={500}
+            className="object-cover w-full max-h-[calc(100ch-350px)] rounded-lg"
+          />
+        </figure>
+        <div className="flex rounded-lg p-5 mt-5 bg-base-200 justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Image
+              src={content.data.user?.imgUrl}
+              alt={content.data.user?.name}
+              width={50}
+              height={50}
+              className="rounded-full h-16 w-16 object-cover"
+            />
+            <div>
+              <p className="font-semibold">{content.data.user.name}</p>
+              <p>{content.data.createdAt.split("T")[0]}</p>
+            </div>
+          </div>
+          {(userAuth._id === content.data.userId ||
+            userAuth.role === "Admin") && (
+            <div className="flex gap-2">
+              <Link
+                href={`/edit-content/${params.id}`}
+                className="btn btn-info"
+              >
+                Edit
+              </Link>
+              <DeleteContentBtn
+                id={content.data._id}
+                type={content.data.type}
+              />
+            </div>
+          )}
+        </div>
+        <div
+          className="custom-html-content rounded-lg p-5 mt-5 bg-base-200"
+          dangerouslySetInnerHTML={{ __html: content.data.content }}
+        ></div>
+      </div>
+    </section>
   );
 };
 

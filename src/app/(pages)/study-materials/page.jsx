@@ -6,6 +6,7 @@ import Loading from "@/components/Loading";
 import Link from "next/link";
 import DeleteSm from "../../../components/DeleteSm";
 import { useUserAuth } from "@/context/userAuth";
+import Head from "next/head";
 
 const StudyMaterials = () => {
   const { userAuth, loading } = useUserAuth();
@@ -21,6 +22,14 @@ const StudyMaterials = () => {
 
   return (
     <section className="w-full max-w-7xl mx-auto p-1">
+      <Head>
+        <title>Study Materials - Spark</title>
+        <meta
+          name="description"
+          content="Study materials of all the courses of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh. These study materials are provided by the students of the department of EEE RU. Batch 08. SPARK-08."
+          key="desc"
+        />
+      </Head>
       <h1 className="text-4xl text-center font-bold my-10">Study Materails</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {sm.data.length > 0 ? (

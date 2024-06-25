@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Loading from "@/components/Loading";
+import Head from "next/head";
 
 const year = {
   1: "First Year",
@@ -23,6 +24,14 @@ const CourseDetails = () => {
 
   return (
     <section className="w-full my-20">
+      <Head>
+        <title>Academics - Spark</title>
+        <meta
+          name="description"
+          content="Academic details of all the courses offered by depertment of 8th Batch Electrical and Electronic Engineering. Faculty of Engineering. University of Rajshahi. Rajshahi, Bangladesh"
+          key="desc"
+        />
+      </Head>
       {courses.data.map((course) => (
         <div key={course._id}>
           <h1 className="text-4xl font-bold my-10 text-center">

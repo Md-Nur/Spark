@@ -4,6 +4,7 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import ShowContent from "../../../components/ShowContent";
 import { usePathname } from "next/navigation";
+import Head from "next/head";
 
 const Blog = () => {
   const path = usePathname();
@@ -17,7 +18,19 @@ const Blog = () => {
 
   if (contents.isLoading) return <Loading />;
 
-  return <ShowContent contents={contents.data} />;
+  return (
+    <>
+      <Head>
+        <title>Blogs - Spark</title>
+        <meta
+          name="description"
+          content="Read blogs shared by others. Share your own blog to inspire others. In this page you will find blogs shared by students of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh."
+          key="desc"
+        />
+      </Head>
+      <ShowContent contents={contents.data} />
+    </>
+  );
 };
 
 export default Blog;

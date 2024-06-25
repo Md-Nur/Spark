@@ -8,6 +8,7 @@ import Loading from "@/components/Loading";
 import { useUserAuth } from "@/context/userAuth";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Head from "next/head";
 
 const Results = () => {
   const { userAuth } = useUserAuth();
@@ -42,6 +43,14 @@ const Results = () => {
 
   return (
     <section className="flex flex-col items-center gap-5 min-h-screen p-2 w-full bg-base-100">
+      <Head>
+        <title>{userAuth ? "Results" : "Student Info"} - Spark</title>
+        <meta
+          name="description"
+          content="Results and student information of all the students of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh."
+          key="desc"
+        />
+      </Head>
       <h1 className="text-4xl font-bold my-5">
         {userAuth ? "Results" : "Student Info"}
       </h1>
