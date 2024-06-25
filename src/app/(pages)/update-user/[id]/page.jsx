@@ -8,11 +8,14 @@ import { useUserAuth } from "@/context/userAuth";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { FaUpload } from "react-icons/fa";
+import { useState } from "react";
 
 const UpdateUser = ({ params }) => {
   const { userAuth, loading, setUserAuth } = useUserAuth();
   const { register, handleSubmit, reset } = useForm();
   const router = useRouter();
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState();
 
   const user = useQuery({
     queryKey: ["user", params.id],
@@ -22,19 +25,29 @@ const UpdateUser = ({ params }) => {
     },
   });
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file));
+    } else {
+      setImage(null);
+      setPreview(null);
+    }
+  };
+
   const onSubmit = async (data) => {
     toast.loading("Updating user info...");
     try {
-      if (data.imgFile.length) {
+      if (image) {
         const imgData = new FormData();
-        imgData.append("image", data.imgFile[0]);
+        imgData.append("image", image);
         const imgURL = await axios.post(
           `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
           imgData
         );
         data.imgUrl = imgURL.data.data.url;
       }
-      delete data.imgFile;
 
       await axios.put(`/api/user/${params.id}`, data);
 
@@ -68,7 +81,7 @@ const UpdateUser = ({ params }) => {
         description={`
           If you provide any wrong information, your profile will be deleted from the website.
           `}
-        imgUrl={user.data?.imgUrl}
+        imgUrl={preview || user.data?.imgUrl}
       >
         <form
           className="card-body bg-base-200 w-full p-2 md:p-7"
@@ -85,7 +98,7 @@ const UpdateUser = ({ params }) => {
                 type="file"
                 placeholder="Image Url"
                 className="hidden"
-                {...register("imgFile")}
+                onChange={handleFileChange}
               />
               <span className="text-lg uppercase text-neutral-content">
                 Upload Profile Image

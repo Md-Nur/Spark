@@ -9,9 +9,9 @@ export default function Home() {
     <section className="bg-base-100 w-full">
       <Hero />
       <Intro />
-      <CR />
       <LatestContent />
       <Admin />
+      <CR />
     </section>
   );
 }
