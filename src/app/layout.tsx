@@ -10,8 +10,9 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Spark - 08",
-  description: "Result analysis and management system",
+  title: "Spark - 08 EEE",
+  description:
+    "Spark 08 EEE. Result analysis and management system. Also  this website helps other to known the student information and their activites like toure, event, workshop, blogs etc. This website is developed by the student of 08 EEE batch of Rajshahi University named Muhammand Nur.",
 };
 
 export default function RootLayout({
