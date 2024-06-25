@@ -77,8 +77,8 @@ const Admin = () => {
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <Image
-                            height={48}
-                            width={48}
+                            height={100}
+                            width={100}
                             src={user.imgUrl || "https://i.pravatar.cc/300"}
                             alt={user.name}
                           />
