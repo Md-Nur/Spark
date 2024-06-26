@@ -7,6 +7,12 @@ import Image from "next/image";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+// import logoDark from "@/pic/logoDark.png";
+// import logoLight from "@/pic/logoLight.png";
+import logoDark from "@/pic/sparknight.png"
+import logoLight from "@/pic/dayspark.png"
+
+
 
 const NavRoutes = () => {
   const { userAuth } = useUserAuth();
@@ -52,7 +58,7 @@ const Navbar = () => {
 
   if (!theme || loading)
     return (
-      <div className="h-[67px]">
+      <div className="h-[72px]">
         <Loading />
       </div>
     );
@@ -71,8 +77,14 @@ const Navbar = () => {
             <NavRoutes />
           </ul>
         </div>
-        <Link href="/" className="btn btn-ghost text-xl">
-          Spark
+        <Link href="/" className="cursor-pointer ml-3 ">
+          <Image
+            src={theme === "dark" ? logoDark : logoLight}
+            alt="logo"
+            width={100}
+            height={100}
+            className="h-14 w-14 object-cover rounded-full"
+          />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -97,15 +109,15 @@ const Navbar = () => {
             role="button"
             className="btn btn-ghost btn-circle avatar"
           >
-            <div className="w-10 rounded-full">
+            <div className="w-14 rounded-full">
               <Image
                 alt={userAuth?.name || "Avatar"}
                 src={
                   userAuth?.imgUrl ||
                   "https://plus.unsplash.com/premium_photo-1711987238385-fc2a6736fdb4"
                 }
-                width={40}
-                height={40}
+                width={100}
+                height={100}
                 className="w-auto h-auto"
               />
             </div>
