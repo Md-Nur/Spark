@@ -5,7 +5,7 @@ import Loading from "@/components/Loading";
 import Link from "next/link";
 import DeleteSm from "../../../components/DeleteSm";
 import { useUserAuth } from "@/context/userAuth";
-import Metadata from "@/components/Metadata";
+// import Metadata from "@/components/Metadata";
 
 const StudyMaterials = () => {
   const { userAuth, loading } = useUserAuth();
@@ -21,10 +21,10 @@ const StudyMaterials = () => {
 
   return (
     <>
-      <Metadata
+      {/* <Metadata
         seoTitle="Study Materials - Spark"
         seoDescription="Study materials of all the courses of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh. These study materials are provided by the students of the department of EEE RU. Batch 08. SPARK-08."
-      />
+      /> */}
       <section className="w-full max-w-7xl mx-auto p-1">
         <h1 className="text-4xl text-center font-bold my-10">
           Study Materails

@@ -7,7 +7,7 @@ import "../style.css";
 import Image from "next/image";
 import Link from "next/link";
 import DeleteContentBtn from "@/components/DeleteContentBtn";
-import Metadata from "@/components/Metadata";
+// import Metadata from "@/components/Metadata";
 
 const Content = ({ params }) => {
   const { userAuth, loading } = useUserAuth();
@@ -37,12 +37,12 @@ const Content = ({ params }) => {
 
   return (
     <>
-      <Metadata
+      {/* <Metadata
         seoTitle={content.data.title}
         seoDescription={
           content.data.title + " - " + content.data.tags.join(", ")
         }
-      />
+      /> */}
       <section className="py-20 px-2">
         <h1 className="text-xl md:text-4xl font-bold text-center my-10">
           {content.data.title}

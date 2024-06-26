@@ -14,7 +14,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import Loading from "@/components/Loading";
-import Metadata from "@/components/Metadata";
+// import Metadata from "@/components/Metadata";
 
 const Student = ({ params }) => {
   const { userAuth } = useUserAuth();
@@ -34,10 +34,10 @@ const Student = ({ params }) => {
 
   return (
     <div className="hero min-h-screen bg-base-200 w-full">
-      <Metadata
+      {/* <Metadata
         seoTitle={`${student.data?.name} - Spark`}
         seoDesc={`Profile of ${student.data?.name} of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh.`}
-      />
+      /> */}
       <div className="hero-content flex-col lg:flex-row justify-around w-full md:items-start h-full py-14">
         <div className="flex flex-col justify-center gap-2 border-b-2 border-base-content md:border-b-0 w-auto p-1">
           <h1 className="text-3xl font-bold uppercase text-center md:text-left">

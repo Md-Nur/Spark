@@ -8,7 +8,7 @@ import Loading from "@/components/Loading";
 import { useUserAuth } from "@/context/userAuth";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import Metadata from "@/components/Metadata";
+// import Metadata from "@/components/Metadata";
 import { hall } from "@/lib/utils";
 
 const Results = () => {
@@ -47,10 +47,10 @@ const Results = () => {
 
   return (
     <>
-      <Metadata
+      {/* <Metadata
         seoTitle={userAuth ? "Results" : "Student Info"}
         seoDescription="Results and student information of all the students of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh."
-      />
+      /> */}
       <section className="flex flex-col items-center gap-5 p-2 w-full bg-base-100">
         <h1 className="text-4xl font-bold my-5">
           {userAuth ? "Results" : "Student Info"}

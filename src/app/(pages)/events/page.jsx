@@ -4,7 +4,7 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import ShowContent from "../../../components/ShowContent";
 import { usePathname } from "next/navigation";
-import Metadata from "@/components/Metadata";
+// import Metadata from "@/components/Metadata";
 
 const Event = () => {
   const pathName = usePathname();
@@ -23,10 +23,10 @@ const Event = () => {
 
   return (
     <>
-      <Metadata
+      {/* <Metadata
         seoTitle="Events - Spark"
         seoDescription="Read blogs shared by others. Share your own blog to inspire others. In this page you will find blogs shared by students of the department of Electrical and Electronic Engineering, University of Rajshahi. Rajshahi, Bangladesh."
-      />
+      /> */}
       <ShowContent contents={contents.data} title="Spark Events" />
     </>
   );

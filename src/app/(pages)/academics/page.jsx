@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Loading from "@/components/Loading";
-import Metadata from "@/components/Metadata";
+// import Metadata from "@/components/Metadata";
 
 const year = {
   1: "First Year",
@@ -24,10 +24,10 @@ const CourseDetails = () => {
 
   return (
     <>
-      <Metadata
+      {/* <Metadata
         seoTitle="Academics - Spark"
         seoDescription="Academic details of all the courses offered by depertment of 8th Batch Electrical and Electronic Engineering. Faculty of Engineering. University of Rajshahi. Rajshahi, Bangladesh"
-      />
+      /> */}
 
       <section className="w-full my-20">
         {courses.data.map((course) => (
