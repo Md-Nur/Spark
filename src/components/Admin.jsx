@@ -20,7 +20,9 @@ const Admin = () => {
   const admins = useQuery({
     queryKey: ["admins", pathname],
     queryFn: async () => {
-      const response = await axios.get("/api/admins");
+      const response = await axios.get("/api/admins", {
+        cache: "no-cache",
+      });
       return response.data;
     },
   });

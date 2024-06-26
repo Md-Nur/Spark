@@ -12,7 +12,9 @@ const CR = () => {
   const crs = useQuery({
     queryKey: ["crs", pathname],
     queryFn: async () => {
-      const response = await axios.get(`/api/cr`);
+      const response = await axios.get(`/api/cr`, {
+        cache: "no-cache",
+      });
       return response.data;
     },
   });
@@ -22,12 +24,12 @@ const CR = () => {
       <h1 className="text-4xl text-center font-bold my-20">
         Class Representative
       </h1>
-      <div className="flex flex-wrap gap-4 justify-evenly w-full">
+      <div className="flex flex-wrap gap-4 justify-evenly w-full px-2">
         {crs.data?.map((cr) => (
           <Link
             href={`/student/${cr._id}`}
             key={cr._id}
-            className="card bg-base-300 w-full px-2 md:w-96 shadow-xl"
+            className="card bg-base-300 w-full md:w-96 shadow-xl"
           >
             <figure>
               <Image
