@@ -67,13 +67,13 @@ const Content = ({ postData }) => {
       }
     } else {
       try {
-        const { data } = await axios.post("/api/contents", data);
+        const res = await axios.post("/api/contents", data);
         toast.dismiss();
-        router.push(`/content/${data._id}`);
+        router.push(`/content/${res.data._id}`);
         toast.success("Post added successfully");
       } catch (error) {
         toast.dismiss();
-        toast.error(error.response.data.error || error.message);
+        toast.error(error?.response?.data?.error || error.message);
       }
     }
   };
