@@ -24,7 +24,7 @@ export async function GET(req: Request) {
 
     if (type === "blog") {
       pipeline.push({ $match: { type: "blog" } });
-    } else {
+    } else if (!limit) {
       pipeline.push({ $match: { type: { $ne: "blog" } } });
     }
   }
