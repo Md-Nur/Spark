@@ -9,10 +9,8 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 // import logoDark from "@/pic/logoDark.png";
 // import logoLight from "@/pic/logoLight.png";
-import logoDark from "@/pic/sparknight.png"
-import logoLight from "@/pic/dayspark.png"
-
-
+import logoDark from "@/pic/sparknight.png";
+import logoLight from "@/pic/dayspark.png";
 
 const NavRoutes = () => {
   const { userAuth } = useUserAuth();
@@ -64,7 +62,11 @@ const Navbar = () => {
     );
 
   return (
-    <div className="navbar bg-base-300 sticky top-0 z-10">
+    <div
+      className={`navbar ${
+        theme === "dark" ? "bg-[#162230]" : "bg-[#7BDDCE]"
+      } sticky top-0 z-10`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
