@@ -52,9 +52,9 @@ const Content = ({ params }) => {
             <Image
               src={content.data.thumbnail}
               alt={content.data.title}
-              width={800}
-              height={500}
-              className="object-cover w-full max-h-[calc(100ch-350px)] rounded-lg"
+              width={1700}
+              height={1000}
+              className="object-cover w-full max-h-[calc(100vh-250px)] rounded-lg"
             />
           </figure>
           <div className="flex rounded-lg p-5 mt-5 bg-base-200 justify-center md:justify-between items-center flex-wrap gap-3">
@@ -63,8 +63,8 @@ const Content = ({ params }) => {
                 <Image
                   src={content.data.user?.imgUrl}
                   alt={content.data.user?.name}
-                  width={50}
-                  height={50}
+                  width={100}
+                  height={100}
                   className="rounded-full h-16 w-16 object-cover"
                 />
               </Link>

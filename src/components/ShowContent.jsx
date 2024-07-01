@@ -20,8 +20,8 @@ const ShowContent = ({ contents, title }) => {
               <Image
                 src={content.thumbnail || hoodie}
                 alt={content.title}
-                width={300}
-                height={200}
+                width={800}
+                height={500}
                 className="object-cover w-full h-56"
               />
             </figure>
