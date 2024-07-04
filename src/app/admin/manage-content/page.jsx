@@ -45,8 +45,8 @@ const ManageContent = () => {
                         <Image
                           src={content.thumbnail}
                           alt="Thumbnail"
-                          width={48}
-                          height={48}
+                          width={100}
+                          height={100}
                         />
                       </div>
                     </div>
