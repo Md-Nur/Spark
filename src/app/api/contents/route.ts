@@ -35,12 +35,12 @@ export async function GET(req: Request) {
   }
 
   pipeline = [
-    ...pipeline,
     {
       $sort: {
         createdAt: -1,
       },
     },
+    ...pipeline,
     {
       $addFields: {
         userId: { $toObjectId: "$userId" },
