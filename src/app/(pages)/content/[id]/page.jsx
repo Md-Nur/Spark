@@ -110,10 +110,10 @@ const Content = ({ params }) => {
               </div>
             )}
           </div>
-          <div
+          <article
             className="custom-html-content rounded-lg p-5 mt-5 bg-base-200"
             dangerouslySetInnerHTML={{ __html: content.data.content }}
-          ></div>
+          ></article>
         </div>
       </section>
     </>

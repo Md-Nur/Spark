@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import { Editor } from "@tinymce/tinymce-react";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Input from "./Forms/Input";
 
 const Content = ({ postData }) => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const Content = ({ postData }) => {
   const editorRef = useRef(null);
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [author, setAuthor] = useState(userAuth);
   const {
     register,
     handleSubmit,
@@ -25,6 +27,7 @@ const Content = ({ postData }) => {
       type: postData?.type || "blog",
       tags: postData?.tags.join(",") || "",
       content: postData?.content || "",
+      userId: userAuth?._id,
     },
   });
   const handleFileChange = (event) => {
@@ -77,23 +80,28 @@ const Content = ({ postData }) => {
       }
     }
   };
+
+  useEffect(() => {
+    setAuthor(userAuth);
+  }, [userAuth]);
+
   return (
     <section className="card">
       <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+        <Input name="title" error={errors.title} register={register} />
         <div className="form-control">
-          <label className="label">
-            <span className="label-text">Title</span>
-            {errors.title && (
-              <span className="text-error">Title is required</span>
-            )}
-          </label>
-          <input
-            type="text"
-            placeholder="Title"
-            className="input input-bordered"
-            {...register("title", { required: true })}
-          />
+          <div className="flex flex-col items-center w-16 gap-2">
+            <p className="">Author</p>
+            <Image
+              src={author?.imgUrl}
+              alt={author?.name}
+              width={100}
+              height={100}
+              className="rounded-full h-16 w-16 object-cover"
+            />
+          </div>
         </div>
+        
         <div className="form-control">
           {(preview || postData?.thumbnail) && (
             <Image
