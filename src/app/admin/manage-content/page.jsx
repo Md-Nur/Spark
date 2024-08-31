@@ -4,8 +4,7 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import Image from "next/image";
 import Link from "next/link";
-import ContentApproveBtn from "@/components/ContentApproveBtn";
-import DeleteContentBtn from "@/components/DeleteContentBtn";
+import ContentApproveBtn from "@/components/ActionBtn/ContentApproveBtn";
 
 const ManageContent = () => {
   const allContent = useQuery({
@@ -55,9 +54,7 @@ const ManageContent = () => {
                 <td>
                   <div className="flex flex-col">
                     <span className="font-bold">{content.title}</span>
-                    <span className="">
-                      {content.createdAt.split("T")[0]}
-                    </span>
+                    <span className="">{content.createdAt.split("T")[0]}</span>
                   </div>
                 </td>
                 <td>{content.user.name}</td>

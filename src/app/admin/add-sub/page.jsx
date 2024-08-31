@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import HeroForm from "../../../components/HeroForm";
+import HeroForm from "@/components/Forms/HeroForm";
 import SingleSub from "./SingleSub";
 import axios from "axios";
 import { toast } from "react-toastify";

@@ -1,5 +1,5 @@
 "use client";
-import HeroForm from "@/components/HeroForm";
+import HeroForm from "@/components/Forms/HeroForm";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Loading from "@/components/Loading";

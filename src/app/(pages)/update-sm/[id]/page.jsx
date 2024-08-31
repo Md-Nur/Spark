@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/components/Loading";
-import StudyMaterials from "../../../../components/StudyMaterials";
+import StudyMaterials from "@/app/(pages)/add-sm/StudyMaterials";
 import axios from "axios";
 
 const UpdateSM = ({ params }) => {

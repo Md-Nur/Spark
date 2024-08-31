@@ -1,10 +1,10 @@
 "use client";
 import { useForm } from "react-hook-form";
-import HeroForm from "./HeroForm";
+import HeroForm from "@/components/Forms/HeroForm";
 import { useUserAuth } from "@/context/userAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
-import indoorGame from "@/pic/indoorGames.jpg";
+import library from "@/pic/library.jpeg"
 import { useRouter } from "next/navigation";
 
 const StudyMaterials = ({ sMData }) => {
@@ -34,7 +34,7 @@ const StudyMaterials = ({ sMData }) => {
     <HeroForm
       title="Study Materials"
       description="Add your study materials title and description here."
-      imgUrl={indoorGame}
+      imgUrl={library}
     >
       <form
         onSubmit={handleSubmit(onSubmit)}

@@ -1,6 +1,6 @@
 "use client";
 import { useUserAuth } from "@/context/userAuth";
-import StudyMaterials from "@/components/StudyMaterials";
+import StudyMaterials from "./StudyMaterials";
 
 const AddSm = () => {
   const { userAuth } = useUserAuth();

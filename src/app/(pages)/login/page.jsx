@@ -1,10 +1,11 @@
 "use client";
-import HeroForm from "@/components/HeroForm";
+import HeroForm from "@/components/Forms/HeroForm";
 import { useUserAuth } from "@/context/userAuth";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import selfi from "@/pic/selfi.jpg";
 // import Metadata from "@/components/Metadata";
 
 const Login = () => {
@@ -36,7 +37,7 @@ const Login = () => {
         title="LogIn"
         description="Dear SPARK-08 member,
 Please login with your student ID and Registration number to see / update profiles and results"
-        imgUrl="https://i.ibb.co/SxBcL4B/IMG20240527193319.jpg"
+        imgUrl={selfi}
       >
         <form
           className="card-body w-full bg-base-200"
