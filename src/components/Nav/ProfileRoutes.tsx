@@ -1,6 +1,6 @@
 "use client";
 import { useUserAuth } from "@/context/userAuth";
-import LogoutBtn from "../LogoutBtn";
+import LogoutBtn from "../ActionBtn/LogoutBtn";
 import NavLink from "./NavLink";
 
 const ProfileRoutes = () => {

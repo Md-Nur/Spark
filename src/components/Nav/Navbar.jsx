@@ -43,7 +43,7 @@ const Navbar = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <MdMenu />
+            <MdMenu className="w-7 h-7" />
           </div>
           <ul
             tabIndex={0}

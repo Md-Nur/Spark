@@ -6,7 +6,7 @@ import Loading from "@/components/Loading";
 import "../style.css";
 import Image from "next/image";
 import Link from "next/link";
-import DeleteContentBtn from "@/components/DeleteContentBtn";
+import DeleteContentBtn from "@/components/ActionBtn/DeleteContentBtn";
 // import Metadata from "@/components/Metadata";
 
 const Content = ({ params }) => {
