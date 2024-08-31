@@ -27,7 +27,7 @@ const Content = ({ postData }) => {
       type: postData?.type || "blog",
       tags: postData?.tags.join(",") || "",
       content: postData?.content || "",
-      userId: userAuth?._id,
+      userId: postData?.userId || userAuth?._id,
     },
   });
   const handleFileChange = (event) => {
@@ -101,7 +101,7 @@ const Content = ({ postData }) => {
             />
           </div>
         </div>
-        
+
         <div className="form-control">
           {(preview || postData?.thumbnail) && (
             <Image
