@@ -2,41 +2,14 @@
 import { useUserAuth } from "@/context/userAuth";
 import Link from "next/link";
 import { MdMenu } from "react-icons/md";
-import LogoutBtn from "./LogoutBtn";
 import Image from "next/image";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import Loading from "./Loading";
-// import logoDark from "@/pic/logoDark.png";
-// import logoLight from "@/pic/logoLight.png";
+import Loading from "../Loading";
 import logoDark from "@/pic/sparknight.png";
 import logoLight from "@/pic/dayspark.png";
-
-const NavRoutes = () => {
-  const { userAuth } = useUserAuth();
-  return (
-    <>
-      <li>
-        <Link href="/">Home</Link>
-      </li>
-      <li>
-        <Link href="/results">{userAuth ? "Results" : "Student Info"}</Link>
-      </li>
-      <li>
-        <Link href="/academics">Academics</Link>
-      </li>
-      <li>
-        <Link href="/study-materials">Study Materials</Link>
-      </li>
-      <li>
-        <Link href="/blog">Blogs</Link>
-      </li>
-      <li>
-        <Link href="/events">Events</Link>
-      </li>
-    </>
-  );
-};
+import NavRoutes from "./NavRoutes";
+import ProfileRoutes from "./ProfileRoutes";
 
 const Navbar = () => {
   const { userAuth, loading } = useUserAuth();
@@ -128,38 +101,7 @@ const Navbar = () => {
             tabIndex={0}
             className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
           >
-            {userAuth ? (
-              <>
-                <li>
-                  <Link
-                    href={`/student/${userAuth._id}`}
-                    className="justify-between"
-                  >
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/add-sm">Add Study Materials</Link>
-                </li>
-                <li>
-                  <Link href="/add-content">Add Blogs/Event</Link>
-                </li>
-                {userAuth?.role === "Admin" && (
-                  <li>
-                    <Link href="/admin">Admin</Link>
-                  </li>
-                )}
-                <li>
-                  <LogoutBtn />
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link href="/login">Login</Link>
-                </li>
-              </>
-            )}
+            <ProfileRoutes />
           </ul>
         </div>
       </div>
