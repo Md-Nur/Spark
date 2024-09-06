@@ -2,6 +2,7 @@
 import { useUserAuth } from "@/context/userAuth";
 import Link from "next/link";
 import Loading from "@/components/Loading";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -9,9 +10,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { userAuth, loading }: any = useUserAuth();
-
+  const router = useRouter();
   if (loading) return <Loading />;
   else if (userAuth?.role !== "Admin") {
+    router.push("/login");
     return (
       <div className="flex items-center justify-center">
         <h1 className="text-2xl font-bold text-center">

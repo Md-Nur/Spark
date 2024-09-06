@@ -6,8 +6,8 @@ import Image from "next/image";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
-import logoDark from "@/pic/sparknight.png";
-import logoLight from "@/pic/dayspark.png";
+import logoDark from "@/pic/logoDark.png";
+import logoLight from "@/pic/logoLight.png";
 import NavRoutes from "./NavRoutes";
 import ProfileRoutes from "./ProfileRoutes";
 
@@ -27,7 +27,7 @@ const Navbar = () => {
     html.attributes["data-theme"].value = theme;
   }, [theme]);
 
-  if (!theme || loading)
+  if (!theme)
     return (
       <div className="h-[72px]">
         <Loading />
@@ -36,9 +36,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar ${
-        theme === "dark" ? "bg-[#162230]" : "bg-[#7BDDCE]"
-      } sticky top-0 z-10`}
+      className={`navbar bg-base-200 sticky top-0 z-10`}
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -58,7 +56,7 @@ const Navbar = () => {
             alt="logo"
             width={100}
             height={100}
-            className="h-14 w-14 object-cover rounded-full"
+            className="h-14 w-14 object-cover"
           />
         </Link>
       </div>

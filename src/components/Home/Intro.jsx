@@ -1,6 +1,6 @@
 import Image from "next/image";
 import img1 from "@/pic/allSparks.jpg";
-import img2 from "@/pic/EEESign.jpg";
+import img2 from "@/pic/scienceProject.jpg";
 import img3 from "@/pic/jersy.jpg";
 
 const Intro = () => {

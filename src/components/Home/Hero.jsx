@@ -26,8 +26,8 @@ const Hero = () => {
               the way.
             </p>
             <a href="/spark08.apk" download className="btn btn-primary">
-               <MdAndroid className="h-5 w-5" />
-               Get Andorid App
+              <MdAndroid className="h-5 w-5" />
+              Get Android App
             </a>
           </div>
         </div>

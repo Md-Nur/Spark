@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const NavLink = ({ to, label }: { to: string; label?: string }) => {
   const pathname = usePathname();
@@ -8,8 +9,8 @@ const NavLink = ({ to, label }: { to: string; label?: string }) => {
   return (
     <li>
       <Link
-        className={`capitalize ${
-          pathname === to ? "active" : ""
+        className={`capitalize mx-1 hover:border-b-2 border-base-content ${
+          pathname === to ? "border-b-2" : ""
         }`}
         href={to}
       >
