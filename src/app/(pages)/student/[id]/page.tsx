@@ -16,12 +16,12 @@ import {
 import Loading from "@/components/Loading";
 // import Metadata from "@/components/Metadata";
 
-const Student = ({ params }) => {
-  const { userAuth } = useUserAuth();
+const Student = ({ params }: { params: { id: string } }) => {
+  const { userAuth }: any = useUserAuth();
   const [year, setYear] = useState();
   const [semester, setSemester] = useState();
   const student = useQuery({
-    queryKey: ["student", params.id, year, semester, userAuth],
+    queryKey: [params.id, userAuth?._id],
     queryFn: async () => {
       const response = await axios.get(
         `/api/user/${params.id}?year=${year}&semester=${semester}`
@@ -53,111 +53,59 @@ const Student = ({ params }) => {
           <div className="overflow-x-auto w-full">
             <table className="table table-xs md:table-sm">
               <tbody>
-                <tr>
-                  <th className="hover">Roll</th>
-                  <td>{student.data?.roll}</td>
-                </tr>
-                <tr className="hover">
-                  <th>Session</th>
-                  <td>{student.data?.session}</td>
-                </tr>
-                {student.data?.homeTown && (
-                  <tr>
-                    <th>Home-Town</th>
-                    <td>{student.data?.homeTown}</td>
-                  </tr>
+                {["roll", "session", "homeTown", "phone", "email"].map(
+                  (key) =>
+                    student.data?.[key] && (
+                      <tr key={key}>
+                        <th className="capitalize">{key}</th>
+                        <td>{student.data?.[key]}</td>
+                      </tr>
+                    )
                 )}
-                {student.data?.phone && (
-                  <tr>
-                    <th>Phone</th>
-                    <td>{student.data?.phone}</td>
-                  </tr>
-                )}
-                {student.data?.email && (
-                  <tr>
-                    <th>Email</th>
-                    <td>{student.data?.email}</td>
-                  </tr>
-                )}
-                <tr>
-                  <th>Allotted Hall</th>
-                  <td>{student.data?.hall}</td>
-                </tr>
               </tbody>
             </table>
           </div>
-
           <div className="flex border-t-2 border-base-content justify-center gap-1 sm:gap-2 w-full flex-wrap">
-            {student.data?.facebook && (
-              <a
-                href={student.data?.facebook}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-circle"
-              >
-                <FaFacebook className="text-3xl" />
-              </a>
-            )}
-            {student.data?.linkedin && (
-              <a
-                href={student.data?.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="btn"
-              >
-                <FaLinkedin className="text-3xl" />
-              </a>
-            )}
-            {student.data?.email && (
-              <div className="tooltip" data-tip={student.data.email}>
-                <a
-                  href={`mailto:${student.data.email}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-circle"
-                >
-                  <FaMailBulk className="text-3xl" />
-                </a>
-              </div>
-            )}
-            {student.data?.phone && (
-              <div className="tooltip" data-tip={student.data.phone}>
-                <a
-                  href={`tel:${student.data.phone}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-circle"
-                >
-                  <FaPhone className="text-3xl" />
-                </a>
-              </div>
-            )}
-            {student.data?.whatsapp && (
-              <div className="tooltip" data-tip={student.data.whatsapp}>
-                <a
-                  href={`https://wa.me/+88${student.data.whatsapp}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-circle"
-                >
-                  <FaWhatsapp className="text-3xl" />
-                </a>
-              </div>
-            )}
-            {student.data?.telegram && (
-              <div className="tooltip" data-tip={student.data.telegram}>
-                <a
-                  href={`https://t.me/+88${student.data.telegram}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-circle"
-                >
-                  <FaTelegram className="text-3xl" />
-                </a>
-              </div>
+            {[
+              {
+                key: "facebook",
+                icon: <FaFacebook className="text-3xl" />,
+              },
+              {
+                key: "linkedin",
+                icon: <FaLinkedin className="text-3xl" />,
+              },
+              {
+                key: "email",
+                icon: <FaMailBulk className="text-3xl" />,
+              },
+              {
+                key: "phone",
+                icon: <FaPhone className="text-3xl" />,
+              },
+              {
+                key: "whatsapp",
+                icon: <FaWhatsapp className="text-3xl" />,
+              },
+              {
+                key: "telegram",
+                icon: <FaTelegram className="text-3xl" />,
+              },
+            ].map(
+              (social) =>
+                student.data?.[social.key] && (
+                  <a
+                    key={social.key}
+                    href={student.data?.[social.key]}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-circle"
+                  >
+                    {social.icon}
+                  </a>
+                )
             )}
           </div>
-
           <div className="flex flex-wrap w-full justify-center items-center border-t-2 border-base-content gap-2 py-2">
             {(userAuth?._id === params.id || userAuth?.role === "Admin") && (
               <Link
@@ -178,7 +126,7 @@ const Student = ({ params }) => {
               <select
                 defaultValue=""
                 className="select select-bordered"
-                onChange={(e) => {
+                onChange={(e: any) => {
                   setYear(e.target.value.split(",")[0]);
                   setSemester(e.target.value.split(",")[1]);
                 }}
@@ -208,16 +156,16 @@ const Student = ({ params }) => {
                   <thead className="">
                     <tr>
                       <th>Subject Name</th>
-                      <th className="">Code</th>
+                      <th>Code</th>
                       <th>Credit</th>
                       <th>Grade</th>
                       <th>GPA</th>
-                      <th className="">Type</th>
-                      <th className="">Status</th>
+                      <th>Type</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {student.data?.result.subjects.map((subject) => (
+                    {student.data?.result.subjects.map((subject: any) => (
                       <tr key={subject.id} className="hover">
                         <td>{subject.name}</td>
                         <td className="">{subject.code}</td>
@@ -260,7 +208,7 @@ const Student = ({ params }) => {
             {student.data?.result &&
               (student.data?.result?.pass ? (
                 student.data?.result.subjects.find(
-                  (sub) => sub.improvement || sub.grade === "F"
+                  (sub: any) => sub.improvement || sub.grade === "F"
                 ) && (
                   <div className="flex w-full justify-between flex-wrap border-t-2 border-base-content my-5 py-5">
                     <div>
@@ -269,8 +217,10 @@ const Student = ({ params }) => {
                       </h3>
                       <ul className="px-3">
                         {student.data?.result.subjects
-                          .filter((sub) => sub.improvement && sub.grade !== "F")
-                          .map((sub) => (
+                          .filter(
+                            (sub: any) => sub.improvement && sub.grade !== "F"
+                          )
+                          .map((sub: any) => (
                             <li className="list-disc" key={sub.code}>
                               {sub.name}
                             </li>
@@ -283,8 +233,8 @@ const Student = ({ params }) => {
                       </h3>
                       <ul className="px-3">
                         {student.data?.result.subjects
-                          .filter((sub) => sub.grade === "F")
-                          .map((sub) => (
+                          .filter((sub: any) => sub.grade === "F")
+                          .map((sub: any) => (
                             <li className="list-disc" key={sub.code}>
                               {sub.name}
                             </li>

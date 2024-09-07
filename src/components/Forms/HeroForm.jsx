@@ -1,4 +1,5 @@
 import Image from "next/image";
+import blurImg from "@/pic/hoodie.jpg";
 
 const HeroForm = ({ children, title, description, imgUrl = "" }) => {
   return (
@@ -13,6 +14,8 @@ const HeroForm = ({ children, title, description, imgUrl = "" }) => {
               alt={title}
               width={500}
               height={500}
+              blurDataURL={blurImg}
+              onLoad={(e) => e.target.classList.add("animate-fadeIn")}
               className="w-full max-w-md rounded-lg shadow-2xl object-cover object-center"
             />
           )}

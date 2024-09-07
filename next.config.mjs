@@ -10,15 +10,15 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "i.ibb.co",
-        // port: "",
-        // pathname: "plus.unsplash.com",
+        hostname: "i.ibb.co.com",
       },
       {
         protocol: "https",
         hostname: "i.pravatar.cc",
-        // port: "",
-        // pathname: "plus.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co.com",
       },
     ],
   },
