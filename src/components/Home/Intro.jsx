@@ -36,28 +36,28 @@ const Intro = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:px-5 md:px-7 lg:px-10 my-10 w-full px-3">
         <div className="flex flex-col justify-center items-center w-full px-3">
           <h2 className="text-center text-2xl font-semibold my-5">
-            Highlights of the EEE Department:
+            Highlights of the EEE Department
           </h2>
           <ul className="list-disc text-lg text-justify px-3">
             <li>
-              <strong>Faculty of Engineering: </strong>
+              <strong>Faculty of Engineering </strong>
               Our department is part of the esteemed Faculty of Engineering at
               Rajshahi University, known for its rigorous academics and
               experienced faculty. EEE was established in 2015 and has since
               been a leader in engineering education in Bangladesh.
             </li>
             <li>
-              <strong>Satyendra Nath Bose Academic Building: </strong>
+              <strong>Satyendra Nath Bose Academic Building </strong>
               We attend our classes at this iconic building, offering a
               stimulating learning environment.
             </li>
             <li>
-              <strong>Seminar Library: </strong>
+              <strong>Seminar Library </strong>
               The EEE department has a dedicated seminar library with a vast
               collection of books, journals, and research papers.
             </li>
             <li>
-              <strong>Research Opportunities: </strong>
+              <strong>Research Opportunities </strong>
               The EEE department encourages students to engage in research
               projects, internships, and other hands-on learning experiences.
             </li>
