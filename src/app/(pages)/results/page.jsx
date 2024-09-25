@@ -62,29 +62,31 @@ const Results = () => {
             placeholder="Search By Name or Home-Town"
             onBlur={(e) => setSearchName(e.target.value)}
           />
-          <select
-            defaultValue="Sorting"
-            className="select select-bordered"
-            onChange={(e) =>
-              setSort({
-                ...sort,
-                name: e.target.value.split(" ")[0],
-                value: e.target.value.split(" ")[1] === "asc" ? 1 : -1,
-              })
-            }
-          >
-            <option disabled>Sorting</option>
-            <option value="roll asc">Roll ascending</option>
-            <option value="roll desc">Roll descending</option>
-            <option value="credit asc">Credit ascending</option>
-            <option value="credit desc">Credit descending</option>
-            <option value="sgpa asc">SGPA ascending</option>
-            <option value="sgpa desc">SGPA descending</option>
-            <option value="ygpa asc">YGPA ascending</option>
-            <option value="ygpa desc">YGPA descending</option>
-            <option value="cgpa asc">CGPA ascending</option>
-            <option value="cgpa desc">CGPA descending</option>
-          </select>
+          {userAuth && (
+            <select
+              defaultValue="Sorting"
+              className="select select-bordered"
+              onChange={(e) =>
+                setSort({
+                  ...sort,
+                  name: e.target.value.split(" ")[0],
+                  value: e.target.value.split(" ")[1] === "asc" ? 1 : -1,
+                })
+              }
+            >
+              <option disabled>Sorting</option>
+              <option value="roll asc">Roll ascending</option>
+              <option value="roll desc">Roll descending</option>
+              <option value="credit asc">Credit ascending</option>
+              <option value="credit desc">Credit descending</option>
+              <option value="sgpa asc">SGPA ascending</option>
+              <option value="sgpa desc">SGPA descending</option>
+              <option value="ygpa asc">YGPA ascending</option>
+              <option value="ygpa desc">YGPA descending</option>
+              <option value="cgpa asc">CGPA ascending</option>
+              <option value="cgpa desc">CGPA descending</option>
+            </select>
+          )}
           <select
             defaultValue="Filter"
             className="select select-bordered max-w-72"
@@ -180,7 +182,8 @@ const Results = () => {
                               {result.student.homeTown}
                             </div>
                             <div className="text-sm opacity-60">
-                              {result.student.hallCode && hall[result.student.hallCode]}
+                              {result.student.hallCode &&
+                                hall[result.student.hallCode]}
                             </div>
                           </div>
                         </div>

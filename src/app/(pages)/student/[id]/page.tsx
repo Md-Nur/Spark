@@ -55,7 +55,8 @@ const Student = ({ params }: { params: { id: string } }) => {
               <tbody>
                 {["roll", "session", "homeTown", "phone", "email"].map(
                   (key) =>
-                    student.data?.[key] && (
+                    student.data?.[key] &&
+                    (userAuth || key !== "roll") && (
                       <tr key={key}>
                         <th className="capitalize">{key}</th>
                         <td>{student.data?.[key]}</td>
